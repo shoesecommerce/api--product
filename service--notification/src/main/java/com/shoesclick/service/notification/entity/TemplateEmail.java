@@ -1,5 +1,6 @@
 package com.shoesclick.service.notification.entity;
 
+import com.shoesclick.service.notification.enums.TypeTemplate;
 import jakarta.persistence.*;
 
 @Entity
@@ -9,6 +10,9 @@ public class TemplateEmail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Enumerated(EnumType.STRING)
+    private TypeTemplate typeTemplate;
 
     private String subject;
 
@@ -20,6 +24,15 @@ public class TemplateEmail {
 
     public TemplateEmail setId(Long id) {
         this.id = id;
+        return this;
+    }
+
+    public TypeTemplate getTypeTemplate() {
+        return typeTemplate;
+    }
+
+    public TemplateEmail setTypeTemplate(TypeTemplate typeTemplate) {
+        this.typeTemplate = typeTemplate;
         return this;
     }
 

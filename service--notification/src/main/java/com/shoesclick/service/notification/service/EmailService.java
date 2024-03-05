@@ -25,8 +25,8 @@ public class EmailService {
         this.mailSender = mailSender;
     }
 
-    public void sendEmail(String content, String email, String subject){
-        try{
+    public void sendEmail(String content, String email, String subject) {
+        try {
             MimeMessage message = mailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
             helper.setFrom(this.mailFrom);
@@ -34,7 +34,7 @@ public class EmailService {
             helper.setSubject(subject);
             helper.setText(content, true);
             this.mailSender.send(message);
-        }catch (MessagingException e){
+        } catch (Exception e) {
             throw new SendEmailException("ERRO AO ENVIAR EMAIL");
         }
     }

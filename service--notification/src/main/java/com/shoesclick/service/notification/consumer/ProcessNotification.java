@@ -1,9 +1,9 @@
 package com.shoesclick.service.notification.consumer;
 
-import com.shoesclick.service.notification.repository.CustomerRepository;
-import com.shoesclick.service.notification.repository.NotificationRepository;
-import com.shoesclick.service.notification.service.CustomerService;
-import com.shoesclick.service.notification.service.EmailService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.shoesclick.service.notification.entity.OrderNotification;
+import com.shoesclick.service.notification.service.NotificationService;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -14,20 +14,20 @@ public class ProcessNotification {
     @Value("${rabbitmq.queue.name}")
     private String queue;
 
-    private final EmailService emailService;
+    private final NotificationService notificationService;
 
-    private final CustomerService customerService;
+    private final ObjectMapper objectMapper;
 
-    private final NotificationRepository notificationRepository;
-
-    public ProcessNotification(EmailService emailService, CustomerRepository customerRepository, CustomerService customerService, NotificationRepository notificationRepository) {
-        this.emailService = emailService;
-        this.customerService = customerService;
-        this.notificationRepository = notificationRepository;
+    public ProcessNotification(NotificationService notificationService, ObjectMapper objectMapper) {
+        this.notificationService = notificationService;
+        this.objectMapper = objectMapper;
     }
 
+
     @RabbitListener(queues = "order_notification")
-    public void handleMessage(String message){
+    public void handleMessage(String message) throws JsonProcessingException {
+        OrderNotification order = objectMapper.readValue(message, OrderNotification.class);
+        notificationService.process(order);
 
     }
 }
