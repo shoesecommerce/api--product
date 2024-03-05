@@ -24,7 +24,7 @@ public class ProcessNotification {
     }
 
 
-    @RabbitListener(queues = "order_notification")
+    @RabbitListener(queues = "mq_notification")
     public void handleMessage(String message) throws JsonProcessingException {
         OrderNotification order = objectMapper.readValue(message, OrderNotification.class);
         notificationService.process(order);

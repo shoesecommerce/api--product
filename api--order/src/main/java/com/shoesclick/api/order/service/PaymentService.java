@@ -14,10 +14,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class PaymentService {
 
-    @Value("${rabbitmq.exchange.name}")
+    @Value("${rabbitmq.notification.exchange.name}")
     private static String exchange;
 
-    @Value("${rabbitmq.routing.payment.key}")
+    @Value("${rabbitmq.payment.routing.key}")
     private static String routingKey;
 
     private final AmqpTemplate rabbitTemplate;

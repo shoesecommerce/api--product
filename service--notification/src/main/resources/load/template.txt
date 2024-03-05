@@ -1,0 +1,5 @@
+CREATE_ORDER; Seu Pedido Foi criado; Seu pedido foi criado com sucesso
+PAYMENT_APPROVED; Seu Pagamento foi Aprovado; Aprovamos o seu pagamento
+PAYMENT_NOT_AUTHORIZED;Seu Pagamento foi Recusado; Recusamos o seu pagamento
+PIX_GENERATED;Pix Gerado; Efetue o pagamento com sua chave pix
+TICKET_GENERATED;Boleto Gerado; Segue o código de barras para o pagamento

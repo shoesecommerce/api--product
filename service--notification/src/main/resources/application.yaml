@@ -47,11 +47,11 @@ spring:
 
 rabbitmq:
   queue:
-    name: order_notification
+    name: mq_notification
   exchange:
-    name: order_exchange
+    name: notification_exchange
   routing:
-    key: order_routingkey
+    key: notification_routingkey
 
 feign:
   client:

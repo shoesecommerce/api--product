@@ -33,15 +33,19 @@ spring:
     port: 5672
     host: localhost
 rabbitmq:
-  queue:
-    notification: order_notification
-    payment: order_payment
-  exchange:
-    name: order_exchange
-  routing:
-    notification:
+  notification:
+    queue:
+      name: mq_notification
+    exchange:
+      name: notification_exchange
+    routing:
       key: notification_routingkey
-    payment:
+  payment:
+    queue:
+      name: mq_payment
+    exchange:
+      name: payment_exchange
+    routing:
       key: payment_routingkey
 
 feign:

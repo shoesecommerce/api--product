@@ -17,16 +17,16 @@ public class NotificationService {
 
     private final NotificationRepository notificationRepository;
 
-    private final TemplateEmailRepository templateEmailRepository;
+    private final TemplateEmailService templateEmailService;
 
     private final LogRepository logRepository;
 
     private final EmailService emailService;
 
-    public NotificationService(CustomerRepository customerRepository, NotificationRepository notificationRepository, TemplateEmailRepository templateEmailRepository, LogRepository logRepository, EmailService emailService) {
+    public NotificationService(CustomerRepository customerRepository, NotificationRepository notificationRepository, TemplateEmailService templateEmailService, LogRepository logRepository, EmailService emailService) {
         this.customerRepository = customerRepository;
         this.notificationRepository = notificationRepository;
-        this.templateEmailRepository = templateEmailRepository;
+        this.templateEmailService = templateEmailService;
         this.logRepository = logRepository;
         this.emailService = emailService;
     }
@@ -36,7 +36,7 @@ public class NotificationService {
         Log log = null;
         try {
             var customer = customerRepository.findById(order.getIdCustomer());
-            var template = templateEmailRepository.findByTypeTemplate(order.getTypeTemplate());
+            var template = templateEmailService.findByTypeTemplate(order.getTypeTemplate());
             emailService.sendEmail(template.getBody(), customer.getEmail(), template.getSubject());
             var notification = new Notification();
             notificationRepository.save(notification);

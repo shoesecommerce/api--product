@@ -12,19 +12,20 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @EnableRabbit
 public class RabbitMQConfig {
-    @Value("${rabbitmq.queue.notification}")
+    @Value("${rabbitmq.notification.queue.name}")
     private String notificationQueue;
-
-    @Value("${rabbitmq.queue.payment}")
-    private String paymentQueue;
-
-    @Value("${rabbitmq.exchange.name}")
-    private String exchange;
-
-    @Value("${rabbitmq.routing.notification.key}")
+    @Value("${rabbitmq.notification.exchange.name}")
+    private String notificationExchange;
+    @Value("${rabbitmq.notification.routing.key}")
     private String routingNotificationKey;
 
-    @Value("${rabbitmq.routing.payment.key}")
+    @Value("${rabbitmq.payment.queue.name}")
+    private String paymentQueue;
+
+    @Value("${rabbitmq.payment.exchange.name}")
+    private String paymentExchange;
+
+    @Value("${rabbitmq.payment.routing.key}")
     private String routingPaymentKey;
 
     @Bean
@@ -33,28 +34,33 @@ public class RabbitMQConfig {
     }
 
     @Bean
-    public Queue paymentQueue(){
-        return new Queue(paymentQueue);
-    }
-
-    @Bean
-    public TopicExchange exchange(){
-        return new TopicExchange(exchange);
+    public TopicExchange notificationExchange(){
+        return new TopicExchange(notificationExchange);
     }
 
     @Bean
     public Binding notificationBinding(){
         return BindingBuilder
                 .bind(notificationQueue())
-                .to(exchange())
+                .to(notificationExchange())
                 .with(routingNotificationKey);
+    }
+
+    @Bean
+    public Queue paymentQueue(){
+        return new Queue(paymentQueue);
+    }
+
+    @Bean
+    public TopicExchange paymentExchange(){
+        return new TopicExchange(paymentExchange);
     }
 
     @Bean
     public Binding paymentBinding(){
         return BindingBuilder
                 .bind(paymentQueue())
-                .to(exchange())
+                .to(paymentExchange())
                 .with(routingPaymentKey);
     }
 }

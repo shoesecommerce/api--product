@@ -1,7 +1,7 @@
 server:
   servlet:
     context-path: /
-  port: 8084
+  port: 8085
 spring:
   mvc:
     throw-exception-if-no-handler-found: true
@@ -26,7 +26,7 @@ spring:
     username: ${SPRING_DATASOURCE_USERNAME:root}
     tomcat:
       max-active: ${SPRING_DATASOURCE_MAX_ACTIVE:10}
-    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/dbnotification?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/dbpayment?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false
   rabbitmq:
     username: "admin"
     password: "passw123"
@@ -47,9 +47,9 @@ spring:
 
 rabbitmq:
   queue:
-    name: payment_notification
+    name: mq_payment
   exchange:
-    name: order_exchange
+    name: payment_exchange
   routing:
     key: payment_routingkey
 

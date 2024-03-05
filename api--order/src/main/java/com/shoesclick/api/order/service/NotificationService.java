@@ -15,10 +15,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class NotificationService {
 
-    @Value("${rabbitmq.exchange.name}")
+    @Value("${rabbitmq.notification.exchange.name}")
     private static String exchange;
 
-    @Value("${rabbitmq.routing.notification.key}")
+    @Value("${rabbitmq.notification.routing.key}")
     private static String routingKey;
 
     private final AmqpTemplate rabbitTemplate;

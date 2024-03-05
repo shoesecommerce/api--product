@@ -27,6 +27,7 @@ public enum PaymentStrategy {
             payment.setIdOrder(order.getId());
             payment.setNumber(String.valueOf(paymentParams.get("number")));
             payment.setName(String.valueOf(paymentParams.get("name")));
+            payment.setCode(String.valueOf(paymentParams.get("code")));
             payment.setExpirationDate(LocalDateTime.parse(String.valueOf(paymentParams.get("expirationDate"))));
             return payment;
         }

@@ -28,7 +28,7 @@ class NotificationServiceTest {
     private NotificationRepository notificationRepository;
 
     @Mock
-    private TemplateEmailRepository templateEmailRepository;
+    private TemplateEmailService templateEmailService;
 
     @Mock
     private LogRepository logRepository;
@@ -46,7 +46,7 @@ class NotificationServiceTest {
                         .setId(1L)
                         .setEmail("email@email.com"));
 
-        when(templateEmailRepository.findByTypeTemplate(any(TypeTemplate.class))).thenReturn(new TemplateEmail()
+        when(templateEmailService.findByTypeTemplate(any(TypeTemplate.class))).thenReturn(new TemplateEmail()
                 .setBody("BODY")
                 .setSubject("SUBJECT")
                 .setTypeTemplate(TypeTemplate.CREATE_ORDER));
@@ -73,7 +73,7 @@ class NotificationServiceTest {
                         .setId(1L)
                         .setEmail("email@email.com"));
 
-        when(templateEmailRepository.findByTypeTemplate(any(TypeTemplate.class))).thenReturn(new TemplateEmail()
+        when(templateEmailService.findByTypeTemplate(any(TypeTemplate.class))).thenReturn(new TemplateEmail()
                 .setBody("BODY")
                 .setSubject("SUBJECT")
                 .setTypeTemplate(TypeTemplate.CREATE_ORDER));

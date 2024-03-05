@@ -1,7 +1,7 @@
-package com.shoesclick.api.product.loader;
+package com.shoesclick.service.notification.loader;
 
-import com.shoesclick.api.product.exception.ResourceException;
-import com.shoesclick.api.product.utils.FileUtils;
+import com.shoesclick.service.notification.exception.ResourceException;
+import com.shoesclick.service.notification.utils.FileUtils;
 import org.springframework.boot.ApplicationRunner;
 
 import java.io.BufferedReader;

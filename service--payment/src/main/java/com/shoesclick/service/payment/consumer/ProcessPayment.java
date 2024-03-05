@@ -3,7 +3,7 @@ package com.shoesclick.service.payment.consumer;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.shoesclick.service.payment.domain.PaymentDomain;
-import com.shoesclick.service.payment.strategy.PaymentService;
+import com.shoesclick.service.payment.service.PaymentService;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -24,7 +24,7 @@ public class ProcessPayment {
     }
 
 
-    @RabbitListener(queues = "order_payment")
+    @RabbitListener(queues = "mq_payment")
     public void handleMessage(String message) throws JsonProcessingException {
         PaymentDomain order = objectMapper.readValue(message, PaymentDomain.class);
         paymentService.process(order);
