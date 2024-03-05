@@ -1,6 +1,6 @@
-package com.shoesclick.api.order.repository;
+package com.shoesclick.service.payment.repository;
 
-import com.shoesclick.api.order.entity.TicketPayment;
+import com.shoesclick.service.payment.entity.TicketPayment;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

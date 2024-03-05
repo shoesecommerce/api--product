@@ -1,4 +1,4 @@
-package com.shoesclick.api.order.entity;
+package com.shoesclick.service.payment.entity;
 
 import jakarta.persistence.Entity;
 

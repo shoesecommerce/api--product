@@ -1,37 +1,47 @@
 package com.shoesclick.api.order.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.shoesclick.api.order.domain.PaymentDomain;
-import com.shoesclick.api.order.entity.*;
-import com.shoesclick.api.order.repository.CardPaymentRepository;
-import com.shoesclick.api.order.repository.PixPaymentRepository;
-import com.shoesclick.api.order.repository.TicketPaymentRepository;
-import com.shoesclick.api.order.strategy.PaymentStrategy;
+import com.shoesclick.api.order.entity.Order;
+import com.shoesclick.api.order.entity.Payment;
+import com.shoesclick.api.order.exception.BusinessException;
+import org.springframework.amqp.core.AmqpTemplate;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
 public class PaymentService {
 
-    private final CardPaymentRepository cardPaymentRepository;
+    @Value("${rabbitmq.exchange.name}")
+    private static String exchange;
 
-    private final PixPaymentRepository pixPaymentRepository;
+    @Value("${rabbitmq.routing.payment.key}")
+    private static String routingKey;
 
-    private final TicketPaymentRepository ticketPaymentRepository;
+    private final AmqpTemplate rabbitTemplate;
 
-    public PaymentService(CardPaymentRepository cardPaymentRepository, PixPaymentRepository pixPaymentRepository, TicketPaymentRepository ticketPaymentRepository) {
-        this.cardPaymentRepository = cardPaymentRepository;
-        this.pixPaymentRepository = pixPaymentRepository;
-        this.ticketPaymentRepository = ticketPaymentRepository;
+    public PaymentService(AmqpTemplate rabbitTemplate) {
+        this.rabbitTemplate = rabbitTemplate;
     }
 
+    public void sendPayment(Order order, PaymentDomain paymentDomain) {
+        try {
 
-    public void save(PaymentDomain paymentDomain, Order order) {
-        var paymentStrategy = PaymentStrategy.findByName(paymentDomain.getPaymentType());
-        switch (paymentStrategy) {
-            case PIX_PAYMENT ->
-                    pixPaymentRepository.save(paymentStrategy.convert(paymentDomain.getPaymentParams(), order));
-            case CARD_PAYMENT -> cardPaymentRepository.save(paymentStrategy.convert(paymentDomain.getPaymentParams(), order));
-            case TICKET_PAYMENT ->
-                    ticketPaymentRepository.save(paymentStrategy.convert(paymentDomain.getPaymentParams(), order));
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.registerModule(new JavaTimeModule());
+            String json = mapper.writeValueAsString(getPayment(order,paymentDomain));
+            rabbitTemplate.convertAndSend(exchange, routingKey, json);
+        } catch (JsonProcessingException e) {
+            throw new BusinessException("ERRO NO PROCESSAMENTO DA FILA MQ");
         }
+    }
+
+    private Payment getPayment(Order order, PaymentDomain paymentDomain) {
+        return new Payment()
+                .setOrder(order)
+                .setPaymentType(paymentDomain.getPaymentType())
+                .setPaymentParams(paymentDomain.getPaymentParams());
     }
 }

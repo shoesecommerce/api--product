@@ -18,7 +18,7 @@ public class NotificationService {
     @Value("${rabbitmq.exchange.name}")
     private static String exchange;
 
-    @Value("${rabbitmq.routing.key}")
+    @Value("${rabbitmq.routing.notification.key}")
     private static String routingKey;
 
     private final AmqpTemplate rabbitTemplate;

@@ -1,10 +1,10 @@
-package com.shoesclick.api.order.strategy;
+package com.shoesclick.service.payment.strategy;
 
-import com.shoesclick.api.order.entity.CardPayment;
-import com.shoesclick.api.order.entity.Order;
-import com.shoesclick.api.order.entity.PixPayment;
-import com.shoesclick.api.order.entity.TicketPayment;
-import com.shoesclick.api.order.exception.ElementNotFoundException;
+import com.shoesclick.service.payment.entity.CardPayment;
+import com.shoesclick.service.payment.entity.Order;
+import com.shoesclick.service.payment.entity.PixPayment;
+import com.shoesclick.service.payment.entity.TicketPayment;
+import com.shoesclick.service.payment.exception.ElementNotFoundException;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -15,7 +15,7 @@ public enum PaymentStrategy {
         @Override
         public PixPayment convert(Map paymentParams, Order order) {
             var payment = new PixPayment();
-            payment.setOrder(order);
+            payment.setIdOrder(order.getId());
             payment.setKeyCode(String.valueOf(paymentParams.get("keyCode")));
             return payment;
         }
@@ -24,7 +24,7 @@ public enum PaymentStrategy {
         @Override
         public CardPayment convert(Map paymentParams, Order order) {
             var payment = new CardPayment();
-            payment.setOrder(order);
+            payment.setIdOrder(order.getId());
             payment.setNumber(String.valueOf(paymentParams.get("number")));
             payment.setName(String.valueOf(paymentParams.get("name")));
             payment.setExpirationDate(LocalDateTime.parse(String.valueOf(paymentParams.get("expirationDate"))));
@@ -36,7 +36,7 @@ public enum PaymentStrategy {
         @Override
         public TicketPayment convert(Map paymentParams, Order order) {
             var payment = new TicketPayment();
-            payment.setOrder(order);
+            payment.setIdOrder(order.getId());
             payment.setCodeBar(String.valueOf(paymentParams.get("codeBar")));
             return payment;
 

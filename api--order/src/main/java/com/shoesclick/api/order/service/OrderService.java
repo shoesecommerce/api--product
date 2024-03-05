@@ -36,27 +36,27 @@ public class OrderService {
 
 
     @Transactional
-    public Status save(Order order, PaymentDomain paymentDomain){
+    public Status save(Order order, PaymentDomain paymentDomain) {
 
         var customer = customerRepository.findById(order.getIdCustomer());
-        order.getOrderItems().stream().forEach(item ->{
+        order.getOrderItems().stream().forEach(item -> {
             var product = productRepository.findById(item.getIdProduct());
             item.setNameProduct(product.getName());
             item.setPrice(product.getPrice());
         });
         orderRepository.save(order);
-        paymentService.save(paymentDomain,order);
+        paymentService.sendPayment(order, paymentDomain);
 
         notificationService.sendNotification(order);
-        return new Status(0,"SUCESSO");
+        return new Status(0, "SUCESSO");
     }
 
-    public List<Order> listOrderByCustomer(Long idCustomer){
-       return orderRepository.findByIdCustomer(idCustomer);
+    public List<Order> listOrderByCustomer(Long idCustomer) {
+        return orderRepository.findByIdCustomer(idCustomer);
     }
 
     @ReturnNullObject(ObjectReturnType.OBJECT)
-    public Order findById(Long id){
+    public Order findById(Long id) {
         return orderRepository.findById(id).orElse(null);
     }
 }

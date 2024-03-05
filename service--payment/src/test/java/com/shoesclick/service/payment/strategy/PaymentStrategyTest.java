@@ -1,6 +1,6 @@
-package com.shoesclick.api.order.strategy;
+package com.shoesclick.service.payment.strategy;
 
-import com.shoesclick.api.order.exception.ElementNotFoundException;
+import com.shoesclick.service.payment.exception.ElementNotFoundException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.test.context.junit.jupiter.SpringExtension;

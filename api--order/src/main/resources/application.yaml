@@ -34,11 +34,15 @@ spring:
     host: localhost
 rabbitmq:
   queue:
-    name: order_notification
+    notification: order_notification
+    payment: order_payment
   exchange:
     name: order_exchange
   routing:
-    key: order_routingkey
+    notification:
+      key: notification_routingkey
+    payment:
+      key: payment_routingkey
 
 feign:
   client:

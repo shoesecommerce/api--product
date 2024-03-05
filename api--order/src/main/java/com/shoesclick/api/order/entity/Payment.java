@@ -1,27 +1,15 @@
 package com.shoesclick.api.order.entity;
 
-import jakarta.persistence.*;
+import java.util.Map;
 
-@Entity
-@Inheritance(strategy = InheritanceType.JOINED)
 public class Payment {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
-    @OneToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="idOrder")
     private Order order;
 
-    public Long getId() {
-        return id;
-    }
+    private String paymentType;
 
-    public Payment setId(Long id) {
-        this.id = id;
-        return this;
-    }
+    private Map<String, Object> paymentParams;
 
     public Order getOrder() {
         return order;
@@ -29,6 +17,24 @@ public class Payment {
 
     public Payment setOrder(Order order) {
         this.order = order;
+        return this;
+    }
+
+    public String getPaymentType() {
+        return paymentType;
+    }
+
+    public Payment setPaymentType(String paymentType) {
+        this.paymentType = paymentType;
+        return this;
+    }
+
+    public Map<String, Object> getPaymentParams() {
+        return paymentParams;
+    }
+
+    public Payment setPaymentParams(Map<String, Object> paymentParams) {
+        this.paymentParams = paymentParams;
         return this;
     }
 }

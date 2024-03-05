@@ -79,7 +79,7 @@ class OrderServiceTest extends AbstractServiceTest {
         order.setOrderItems(Set.of(new OrderItem().setIdProduct(1L)));
         orderService.save(order, orderDomain);
         verify(orderRepository, times(1)).save(any(Order.class));
-        verify(paymentService, times(1)).save(any(PaymentDomain.class), any(Order.class));
+        verify(paymentService, times(1)).sendPayment(any(Order.class), any(PaymentDomain.class));
         verify(notificationService, times(1)).sendNotification(any(Order.class));
 
     }

@@ -1,22 +1,20 @@
 package com.shoesclick.api.order.service;
 
 import com.shoesclick.api.order.domain.PaymentDomain;
-import com.shoesclick.api.order.entity.CardPayment;
 import com.shoesclick.api.order.entity.Order;
-import com.shoesclick.api.order.entity.PixPayment;
-import com.shoesclick.api.order.entity.TicketPayment;
-import com.shoesclick.api.order.repository.CardPaymentRepository;
-import com.shoesclick.api.order.repository.PixPaymentRepository;
-import com.shoesclick.api.order.repository.TicketPaymentRepository;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.util.ReflectionTestUtils;
 
+import java.time.LocalDateTime;
 import java.util.Map;
 
-import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -24,45 +22,25 @@ import static org.mockito.Mockito.verify;
 class PaymentServiceTest {
 
     @Mock
-    private CardPaymentRepository cardPaymentRepository;
-
-    @Mock
-    private PixPaymentRepository pixPaymentRepository;
-
-    @Mock
-    private TicketPaymentRepository ticketPaymentRepository;
+    private AmqpTemplate rabbitTemplate;
 
     @InjectMocks
     private PaymentService paymentService;
 
-
-    @Test
-    void shouldSavePixPaymentSuccess() {
-        var paymentDomain = new PaymentDomain().setPaymentType("PIX_PAYMENT").setPaymentParams(Map.of("keyCode", "3423423234234234324234234"));
-        paymentService.save(paymentDomain, new Order().setId(1L));
-        verify(pixPaymentRepository, times(1)).save(any(PixPayment.class));
-        verify(cardPaymentRepository, times(0)).save(any(CardPayment.class));
-        verify(ticketPaymentRepository, times(0)).save(any(TicketPayment.class));
+    @BeforeEach
+    public void setUp() {
+        ReflectionTestUtils.setField(paymentService, "exchange", "valor");
+        ReflectionTestUtils.setField(paymentService, "routingKey", "valor");
     }
 
     @Test
-    void shouldSaveCardPaymentSuccess() {
-        var paymentDomain = new PaymentDomain().setPaymentType("CARD_PAYMENT").setPaymentParams(Map.of("number", "34234232342342343242", "name", "NOME PESSOA", "code", "123", "expirationDate", "2020-08-17T10:11:16.908732"));
-
-        paymentService.save(paymentDomain, new Order().setId(1L));
-        verify(cardPaymentRepository, times(1)).save(any(CardPayment.class));
-        verify(pixPaymentRepository, times(0)).save(any(PixPayment.class));
-        verify(ticketPaymentRepository, times(0)).save(any(TicketPayment.class));
-    }
-
-    @Test
-    void shouldSaveTicketPaymentSuccess() {
-        var paymentDomain = new PaymentDomain().setPaymentType("TICKET_PAYMENT").setPaymentParams(Map.of("codeBar", "3423423234234234324234234"));
-
-        paymentService.save(paymentDomain, new Order().setId(1L));
-        verify(ticketPaymentRepository, times(1)).save(any(TicketPayment.class));
-        verify(pixPaymentRepository, times(0)).save(any(PixPayment.class));
-        verify(cardPaymentRepository, times(0)).save(any(CardPayment.class));
-
+    void shouldSendNotificationSuccess() throws IllegalAccessException {
+        paymentService.sendPayment(new Order()
+                .setId(1L)
+                .setCreatedAt(LocalDateTime.now())
+                .setStatus(1)
+                .setIdCustomer(1L),
+                new PaymentDomain().setPaymentType("PIX_PAYMENT").setPaymentParams(Map.of()));
+        verify(rabbitTemplate, times(1)).convertAndSend(anyString(), anyString(), anyString());
     }
 }

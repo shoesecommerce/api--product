@@ -12,18 +12,29 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @EnableRabbit
 public class RabbitMQConfig {
-    @Value("${rabbitmq.queue.name}")
-    private String queue;
+    @Value("${rabbitmq.queue.notification}")
+    private String notificationQueue;
+
+    @Value("${rabbitmq.queue.payment}")
+    private String paymentQueue;
 
     @Value("${rabbitmq.exchange.name}")
     private String exchange;
 
-    @Value("${rabbitmq.routing.key}")
-    private String routingkey;
+    @Value("${rabbitmq.routing.notification.key}")
+    private String routingNotificationKey;
+
+    @Value("${rabbitmq.routing.payment.key}")
+    private String routingPaymentKey;
 
     @Bean
-    public Queue queue(){
-        return new Queue(queue);
+    public Queue notificationQueue(){
+        return new Queue(notificationQueue);
+    }
+
+    @Bean
+    public Queue paymentQueue(){
+        return new Queue(paymentQueue);
     }
 
     @Bean
@@ -32,10 +43,18 @@ public class RabbitMQConfig {
     }
 
     @Bean
-    public Binding bindind(){
+    public Binding notificationBinding(){
         return BindingBuilder
-                .bind(queue())
+                .bind(notificationQueue())
                 .to(exchange())
-                .with(routingkey);
+                .with(routingNotificationKey);
+    }
+
+    @Bean
+    public Binding paymentBinding(){
+        return BindingBuilder
+                .bind(paymentQueue())
+                .to(exchange())
+                .with(routingPaymentKey);
     }
 }

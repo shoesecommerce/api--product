@@ -2,8 +2,6 @@ package com.shoesclick.api.order.mapper;
 
 import com.shoesclick.api.order.domain.PaymentDomain;
 import com.shoesclick.api.order.entity.Order;
-import com.shoesclick.api.order.entity.Payment;
-import com.shoesclick.api.order.entity.PixPayment;
 import com.shoesclick.api.order.entity.Status;
 import com.shoesclick.api.order.openapi.model.domain.OrderRequest;
 import com.shoesclick.api.order.openapi.model.domain.OrderResponse;
