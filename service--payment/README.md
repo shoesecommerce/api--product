@@ -1,4 +1,4 @@
-# API - PRODUCT - TRABALHO INFNET
+# SERVICE - PAYMENT - TRABALHO INFNET
 
 Projeto conceito para utilização de Serviço Rest com Spring Boot
 
@@ -22,25 +22,6 @@ Docker: Para Rodar o arquivo docker-compose (Contido no projeto principal) que c
 Postman para Testes : (https://www.postman.com/downloads/)
 ```
 
-## Swagger
-
-Para acessar a documentação do Swagger, utilize o link abaixo (Local):
-
-```
-http://localhost:8081/swagger-ui/index.html
-```
-
-## Rodando os Testes
-
-Utilize o postman Para rodar os testes.
-
-Collection estão na raiz do repositório.
-
-
-```
-Shoes.click.postman_collection.json
-```
-
 ## Rodando local
 
 Inicie com a classe Application.java
@@ -52,7 +33,7 @@ Basta executar o comando maven install
 Para rodar, vá na pasta target onde tem o artefato gerado e execute o comando:
 
 ```
-java -jar api--product-0.0.1-SNAPSHOT.jar
+java -jar service--payment-0.0.1-SNAPSHOT.jar
 ```
 
 
