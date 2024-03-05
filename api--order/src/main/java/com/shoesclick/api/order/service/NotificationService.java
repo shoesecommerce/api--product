@@ -6,6 +6,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.shoesclick.api.order.entity.Order;
 import com.shoesclick.api.order.exception.BusinessException;
 import org.springframework.amqp.core.AmqpTemplate;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -13,10 +14,10 @@ import org.springframework.stereotype.Service;
 public class NotificationService {
 
     @Value("${rabbitmq.exchange.name}")
-    private String exchange;
+    private static String exchange;
 
     @Value("${rabbitmq.routing.key}")
-    private String routingKey;
+    private static String routingKey;
 
     private final AmqpTemplate rabbitTemplate;
 
