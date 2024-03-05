@@ -1,0 +1,439 @@
+openapi: 3.0.2
+info:
+  title: api--customer
+  version: 1.0.0
+  description: Api responsável pelas informações do cliente
+paths:
+  '/api/customer/{id}':
+    get:
+      tags:
+        - Customer
+      parameters:
+        -
+          name: id
+          description: Id do elemento
+          schema:
+            type: number
+          in: path
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerResponse'
+          description: SUCESSO
+      operationId: getCustomer
+      summary: Obtém as informações
+      description: Obtém as informações
+    delete:
+      tags:
+        - Customer
+      parameters:
+        -
+          name: id
+          description: id do elmento
+          schema:
+            type: number
+          in: path
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+          description: SUCESSO
+      operationId: deleteCustomer
+      summary: Remove as informações
+      description: Remove as informações
+    parameters:
+      -
+        name: id
+        description: Identificador do elemento
+        schema:
+          type: number
+        in: path
+        required: true
+  /api/customer/list:
+    get:
+      tags:
+        - Customer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListCustomerResponse'
+          description: SUCESSO
+      operationId: listAllCustomer
+      summary: Busca todas informações
+      description: Busca todas informações
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FilterRequest'
+        required: true
+      tags:
+        - Customer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListCustomerResponse'
+          description: SUCESSO
+      operationId: filterCustomer
+      summary: Busca todas informações
+      description: Busca todas informações
+  /api/customer/save:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerRequest'
+      tags:
+        - Customer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+          description: SUCESSO
+      operationId: saveCustomer
+      summary: Salva as informações
+      description: Salva as informações
+components:
+  schemas:
+    PageableResponse:
+      title: Root Type for PageableResponse
+      description: ''
+      type: object
+      properties:
+        pageNumber:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        sort:
+          $ref: '#/components/schemas/SortResponse'
+          properties:
+            empty:
+              type: boolean
+            sorted:
+              type: boolean
+            unsorted:
+              type: boolean
+        offset:
+          format: int32
+          type: integer
+        unpaged:
+          type: boolean
+        paged:
+          type: boolean
+      example:
+        pageNumber: 0
+        pageSize: 10
+        sort:
+          empty: false
+          sorted: true
+          unsorted: false
+        offset: 0
+        unpaged: false
+        paged: true
+    SortResponse:
+      title: Root Type for SortResponse
+      description: ''
+      type: object
+      properties:
+        empty:
+          type: boolean
+        sorted:
+          type: boolean
+        unsorted:
+          type: boolean
+      example:
+        empty: false
+        sorted: true
+        unsorted: false
+    StatusResponse:
+      title: Root Type for StatusResponse
+      description: ''
+      type: object
+      properties:
+        codigo:
+          format: int32
+          type: integer
+        resposta:
+          type: string
+      example:
+        codigo: 0
+        resposta: SUCESSO
+    CustomerRequest:
+      title: Root Type for CustomerRequest
+      description: ''
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+        email:
+          type: string
+        username:
+          type: string
+        password:
+          type: string
+        address:
+          $ref: '#/components/schemas/AddressRequest'
+          properties:
+            id:
+              format: int32
+              type: integer
+            zipCode:
+              type: string
+            number:
+              type: string
+            street:
+              type: string
+            neighborhood:
+              type: string
+            state:
+              type: string
+            city:
+              type: string
+      example:
+        id: 1
+        name: NOME
+        email: email@email
+        username: USUARIO
+        password: SENHA
+        address:
+          id: 1
+          zipCode: 22222-222
+          number: '222'
+          street: ''
+          neighborhood: bairro
+          state: ST
+          city: cidade
+    CustomerResponse:
+      title: Root Type for CustomerRequest
+      description: ''
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+        email:
+          type: string
+        username:
+          type: string
+        password:
+          type: string
+        address:
+          $ref: '#/components/schemas/AddressResponse'
+          properties:
+            id:
+              format: int32
+              type: integer
+            zipCode:
+              type: string
+            number:
+              type: string
+            street:
+              type: string
+            neighborhood:
+              type: string
+            state:
+              type: string
+            city:
+              type: string
+      example:
+        id: 1
+        name: NOME
+        email: email@email
+        username: USUARIO
+        password: SENHA
+        address:
+          id: 1
+          zipCode: 22222-222
+          number: '222'
+          street: ''
+          neighborhood: bairro
+          state: ST
+          city: cidade
+    AddressRequest:
+      title: Root Type for AddressRequest
+      description: ''
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        zipCode:
+          type: string
+        number:
+          type: string
+        street:
+          type: string
+        neighborhood:
+          type: string
+        state:
+          type: string
+        city:
+          type: string
+      example:
+        id: 1
+        zipCode: 22222-222
+        number: '222'
+        street: ''
+        neighborhood: bairro
+        state: ST
+        city: cidade
+    AddressResponse:
+      title: Root Type for AddressRequest
+      description: ''
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        zipCode:
+          type: string
+        number:
+          type: string
+        street:
+          type: string
+        neighborhood:
+          type: string
+        state:
+          type: string
+        city:
+          type: string
+      example:
+        id: 1
+        zipCode: 22222-222
+        number: '222'
+        street: ''
+        neighborhood: bairro
+        state: ST
+        city: cidade
+    ListCustomerResponse:
+      title: Root Type for ListCustomerResponse
+      description: ''
+      type: object
+      properties:
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomerResponse'
+        pageable:
+          type: object
+          properties:
+            pageNumber:
+              format: int32
+              type: integer
+            pageSize:
+              format: int32
+              type: integer
+            sort:
+              type: object
+              properties:
+                empty:
+                  type: boolean
+                sorted:
+                  type: boolean
+                unsorted:
+                  type: boolean
+            offset:
+              format: int32
+              type: integer
+            unpaged:
+              type: boolean
+            paged:
+              type: boolean
+        last:
+          type: boolean
+        totalPages:
+          format: int32
+          type: integer
+        totalElements:
+          format: int32
+          type: integer
+        first:
+          type: boolean
+        size:
+          format: int32
+          type: integer
+        number:
+          format: int32
+          type: integer
+        sort:
+          type: object
+          properties:
+            empty:
+              type: boolean
+            sorted:
+              type: boolean
+            unsorted:
+              type: boolean
+        numberOfElements:
+          format: int32
+          type: integer
+        empty:
+          type: boolean
+      example:
+        content:
+          -
+            id: 3
+            name: JOSE MAIA
+            email: jose@email.com
+            username: jose.maia
+            password: '12345'
+            address:
+              id: 1
+              zipCode: '200021455'
+              number: '1000'
+              street: RUA DA ASSEMBLEIA
+              neighborhood: CENTRO
+              city: RIO DE JANEIRO
+              state: RJ
+        pageable:
+          pageNumber: 0
+          pageSize: 10
+          sort:
+            empty: false
+            sorted: true
+            unsorted: false
+          offset: 0
+          unpaged: false
+          paged: true
+        last: true
+        totalPages: 1
+        totalElements: 4
+        first: true
+        size: 10
+        number: 0
+        sort:
+          empty: false
+          sorted: true
+          unsorted: false
+        numberOfElements: 4
+        empty: false
+    FilterRequest:
+      title: Root Type for FilterRequest
+      description: ''
+      type: object
+      properties:
+        page:
+          format: int32
+          type: integer
+        filter:
+          type: string
+      example:
+        page: 0
+        filter: filtro

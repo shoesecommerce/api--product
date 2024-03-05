@@ -1,0 +1,339 @@
+openapi: 3.0.2
+info:
+  title: api--product
+  version: 1.0.0
+  description: Api responsável pelas informações de produtos
+paths:
+  '/api/product/{id}':
+    get:
+      tags:
+        - Product
+      parameters:
+        -
+          name: id
+          description: Id do elemento
+          schema:
+            type: number
+          in: path
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductResponse'
+          description: SUCESSO
+      operationId: getProduct
+      summary: Obtém as informações
+      description: Obtém as informações
+    delete:
+      tags:
+        - Product
+      parameters:
+        -
+          name: id
+          description: id do elmento
+          schema:
+            type: number
+          in: path
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+          description: SUCESSO
+      operationId: deleteProduct
+      summary: Remove as informações
+      description: Remove as informações
+    parameters:
+      -
+        name: id
+        description: Identificador do elemento
+        schema:
+          type: number
+        in: path
+        required: true
+  /api/product/list:
+    get:
+      tags:
+        - Product
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListProductResponse'
+          description: SUCESSO
+      operationId: listAllProduct
+      summary: Busca todas informações
+      description: Busca todas informações
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FilterRequest'
+        required: true
+      tags:
+        - Product
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListProductResponse'
+          description: SUCESSO
+      operationId: filterProduct
+      summary: Busca todas informações
+      description: Busca todas informações
+  /api/product/save:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductRequest'
+      tags:
+        - Product
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+          description: SUCESSO
+      operationId: saveProduct
+      summary: Salva as informações
+      description: Salva as informações
+components:
+  schemas:
+    PageableResponse:
+      title: Root Type for PageableResponse
+      description: ''
+      type: object
+      properties:
+        pageNumber:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        sort:
+          $ref: '#/components/schemas/SortResponse'
+          properties:
+            empty:
+              type: boolean
+            sorted:
+              type: boolean
+            unsorted:
+              type: boolean
+        offset:
+          format: int32
+          type: integer
+        unpaged:
+          type: boolean
+        paged:
+          type: boolean
+      example:
+        pageNumber: 0
+        pageSize: 10
+        sort:
+          empty: false
+          sorted: true
+          unsorted: false
+        offset: 0
+        unpaged: false
+        paged: true
+    SortResponse:
+      title: Root Type for SortResponse
+      description: ''
+      type: object
+      properties:
+        empty:
+          type: boolean
+        sorted:
+          type: boolean
+        unsorted:
+          type: boolean
+      example:
+        empty: false
+        sorted: true
+        unsorted: false
+    StatusResponse:
+      title: Root Type for StatusResponse
+      description: ''
+      type: object
+      properties:
+        codigo:
+          format: int32
+          type: integer
+        resposta:
+          type: string
+      example:
+        codigo: 0
+        resposta: SUCESSO
+    ListProductResponse:
+      title: Root Type for ListProductResponse
+      description: ''
+      type: object
+      properties:
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductResponse'
+        pageable:
+          type: object
+          properties:
+            pageNumber:
+              format: int32
+              type: integer
+            pageSize:
+              format: int32
+              type: integer
+            sort:
+              type: object
+              properties:
+                empty:
+                  type: boolean
+                sorted:
+                  type: boolean
+                unsorted:
+                  type: boolean
+            offset:
+              format: int32
+              type: integer
+            unpaged:
+              type: boolean
+            paged:
+              type: boolean
+        last:
+          type: boolean
+        totalPages:
+          format: int32
+          type: integer
+        totalElements:
+          format: int32
+          type: integer
+        first:
+          type: boolean
+        size:
+          format: int32
+          type: integer
+        number:
+          format: int32
+          type: integer
+        sort:
+          type: object
+          properties:
+            empty:
+              type: boolean
+            sorted:
+              type: boolean
+            unsorted:
+              type: boolean
+        numberOfElements:
+          format: int32
+          type: integer
+        empty:
+          type: boolean
+      example:
+        content:
+          -
+            id: 3
+            name: JOSE MAIA
+            email: jose@email.com
+            username: jose.maia
+            password: '12345'
+            address:
+              id: 1
+              zipCode: '200021455'
+              number: '1000'
+              street: RUA DA ASSEMBLEIA
+              neighborhood: CENTRO
+              city: RIO DE JANEIRO
+              state: RJ
+        pageable:
+          pageNumber: 0
+          pageSize: 10
+          sort:
+            empty: false
+            sorted: true
+            unsorted: false
+          offset: 0
+          unpaged: false
+          paged: true
+        last: true
+        totalPages: 1
+        totalElements: 4
+        first: true
+        size: 10
+        number: 0
+        sort:
+          empty: false
+          sorted: true
+          unsorted: false
+        numberOfElements: 4
+        empty: false
+    FilterRequest:
+      title: Root Type for FilterRequest
+      description: ''
+      type: object
+      properties:
+        page:
+          format: int32
+          type: integer
+        filter:
+          type: string
+      example:
+        page: 0
+        filter: filtro
+    ProductRequest:
+      title: Root Type for ProductRequest
+      description: ''
+      type: object
+      properties:
+        id:
+          type: number
+        code:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        price:
+          format: double
+          type: number
+        category:
+          description: ''
+          type: string
+      example:
+        id: 1
+        code: '2000'
+        category: CAMISA
+        name: Camisa Polo Azul
+        description: Camisa masculina Polo azul
+        price: 1.2
+    ProductResponse:
+      title: Root Type for ProductRequest
+      description: ''
+      type: object
+      properties:
+        id:
+          type: number
+        code:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        price:
+          format: double
+          type: number
+      example:
+        id: 1
+        code: '2000'
+        name: Camisa Polo Azul
+        description: Camisa masculina Polo azul
+        price: 1.2
