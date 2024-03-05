@@ -2,10 +2,6 @@
 
 Projeto conceito para utilização de Serviço Rest com Spring Boot
 
-## Iniciando o Projeto# API - PRODUCT - TRABALHO INFNET
-
-Projeto conceito para utilização de Serviço Rest com Spring Boot
-
 ## Iniciando o Projeto
 
 O projeto contém alguns exemplos de serviço REST. O projeto já está configurado em modo standalone
