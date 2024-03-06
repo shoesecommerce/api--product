@@ -3,7 +3,7 @@ package com.shoesclick.service.payment.strategy;
 import com.shoesclick.service.payment.entity.CardPayment;
 import com.shoesclick.service.payment.entity.Order;
 import com.shoesclick.service.payment.entity.PixPayment;
-import com.shoesclick.service.payment.entity.TicketPayment;
+import com.shoesclick.service.payment.entity.BankSlipPayment;
 import com.shoesclick.service.payment.exception.ElementNotFoundException;
 
 import java.time.LocalDateTime;
@@ -33,10 +33,10 @@ public enum PaymentStrategy {
         }
     },
 
-    TICKET_PAYMENT {
+    BANKSLIP_PAYMENT {
         @Override
-        public TicketPayment convert(Map paymentParams, Order order) {
-            var payment = new TicketPayment();
+        public BankSlipPayment convert(Map paymentParams, Order order) {
+            var payment = new BankSlipPayment();
             payment.setIdOrder(order.getId());
             payment.setCodeBar(String.valueOf(paymentParams.get("codeBar")));
             return payment;

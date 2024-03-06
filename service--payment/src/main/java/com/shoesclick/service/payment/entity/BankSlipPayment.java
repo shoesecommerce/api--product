@@ -3,7 +3,7 @@ package com.shoesclick.service.payment.entity;
 import jakarta.persistence.Entity;
 
 @Entity
-public class TicketPayment extends Payment {
+public class BankSlipPayment extends Payment {
 
     private String codeBar;
 
@@ -11,7 +11,7 @@ public class TicketPayment extends Payment {
         return codeBar;
     }
 
-    public TicketPayment setCodeBar(String codeBar) {
+    public BankSlipPayment setCodeBar(String codeBar) {
         this.codeBar = codeBar;
         return this;
     }

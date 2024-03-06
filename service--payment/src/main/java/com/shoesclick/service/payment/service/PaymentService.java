@@ -19,16 +19,16 @@ public class PaymentService {
 
     private final PixPaymentRepository pixPaymentRepository;
 
-    private final TicketPaymentRepository ticketPaymentRepository;
+    private final BankSlipPaymentRepository bankSlipPaymentRepository;
 
     private final NotificationService notificationService;
 
     private final OrderRepository orderRepository;
 
-    public PaymentService(CardPaymentRepository cardPaymentRepository, PixPaymentRepository pixPaymentRepository, TicketPaymentRepository ticketPaymentRepository, NotificationService notificationService, OrderRepository orderRepository) {
+    public PaymentService(CardPaymentRepository cardPaymentRepository, PixPaymentRepository pixPaymentRepository, BankSlipPaymentRepository bankSlipPaymentRepository, NotificationService notificationService, OrderRepository orderRepository) {
         this.cardPaymentRepository = cardPaymentRepository;
         this.pixPaymentRepository = pixPaymentRepository;
-        this.ticketPaymentRepository = ticketPaymentRepository;
+        this.bankSlipPaymentRepository = bankSlipPaymentRepository;
         this.notificationService = notificationService;
         this.orderRepository = orderRepository;
     }
@@ -44,14 +44,15 @@ public class PaymentService {
 
 
     private void savePayment(PaymentDomain paymentDomain) {
+
         var paymentStrategy = PaymentStrategy.findByName(paymentDomain.getPaymentType());
         switch (paymentStrategy) {
             case PIX_PAYMENT ->
                     pixPaymentRepository.save(paymentStrategy.convert(paymentDomain.getPaymentParams(), paymentDomain.getOrder()));
             case CARD_PAYMENT ->
                     cardPaymentRepository.save(paymentStrategy.convert(paymentDomain.getPaymentParams(), paymentDomain.getOrder()));
-            case TICKET_PAYMENT ->
-                    ticketPaymentRepository.save(paymentStrategy.convert(paymentDomain.getPaymentParams(), paymentDomain.getOrder()));
+            case BANKSLIP_PAYMENT ->
+                    bankSlipPaymentRepository.save(paymentStrategy.convert(paymentDomain.getPaymentParams(), paymentDomain.getOrder()));
         }
     }
 

@@ -23,8 +23,8 @@ class PaymentStrategyTest {
     }
 
     @Test
-    void shouldReturn_TICKET_PAYMENT_findByName() {
-        assertEquals(PaymentStrategy.TICKET_PAYMENT, PaymentStrategy.findByName("TICKET_PAYMENT"));
+    void shouldReturn_BANKSLIP_PAYMENT_findByName() {
+        assertEquals(PaymentStrategy.BANKSLIP_PAYMENT, PaymentStrategy.findByName("BANKSLIP_PAYMENT"));
     }
 
     @Test

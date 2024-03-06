@@ -4,7 +4,7 @@ import com.shoesclick.service.payment.entity.*;
 import com.shoesclick.service.payment.repository.CardPaymentRepository;
 import com.shoesclick.service.payment.repository.OrderRepository;
 import com.shoesclick.service.payment.repository.PixPaymentRepository;
-import com.shoesclick.service.payment.repository.TicketPaymentRepository;
+import com.shoesclick.service.payment.repository.BankSlipPaymentRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -28,7 +28,7 @@ class PaymentServiceTest extends AbstractServiceTest {
     private PixPaymentRepository pixPaymentRepository;
 
     @Mock
-    private TicketPaymentRepository ticketPaymentRepository;
+    private BankSlipPaymentRepository bankSlipPaymentRepository;
     @Mock
     private NotificationService notificationService;
 
@@ -60,9 +60,9 @@ class PaymentServiceTest extends AbstractServiceTest {
         verify(notificationService, times(1)).sendNotification(any(Notification.class));
     }
     @Test
-    void shouldProcessPayment_TICKET_PAYMENT_Success(){
-        paymentService.process(getPaymentDomain_TICKET_PAYMENT());
-        verify(ticketPaymentRepository, times(1)).save(any(TicketPayment.class));
+    void shouldProcessPayment_BANKSLIP_PAYMENT_Success(){
+        paymentService.process(getPaymentDomain_BANKSLIP_PAYMENT());
+        verify(bankSlipPaymentRepository, times(1)).save(any(BankSlipPayment.class));
         verify(orderRepository,times(1)).updateStatus(anyLong(), any(OrderStatus.class));
         verify(notificationService, times(1)).sendNotification(any(Notification.class));
     }
