@@ -1,5 +1,8 @@
 package com.shoesclick.api.order.service;
 
+import com.shoesclick.api.order.config.properties.MQNotificationProperties;
+import com.shoesclick.api.order.config.properties.MQPaymentProperties;
+import com.shoesclick.api.order.config.properties.MqProperties;
 import com.shoesclick.api.order.domain.PaymentDomain;
 import com.shoesclick.api.order.entity.Order;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,11 +18,13 @@ import java.time.LocalDateTime;
 import java.util.Map;
 
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(SpringExtension.class)
 class PaymentServiceTest {
+
+    @Mock
+    private MqProperties mqProperties;
 
     @Mock
     private AmqpTemplate rabbitTemplate;
@@ -29,8 +34,11 @@ class PaymentServiceTest {
 
     @BeforeEach
     public void setUp() {
-        ReflectionTestUtils.setField(paymentService, "exchange", "valor");
-        ReflectionTestUtils.setField(paymentService, "routingKey", "valor");
+        var mqPaymentProperties = new MQPaymentProperties();
+        mqPaymentProperties.setQueue("FILA");
+        mqPaymentProperties.setRoutingKey("ROUTING");
+        when(mqProperties.getExchange()).thenReturn("EXCHANGE");
+        when(mqProperties.getPayment()).thenReturn(mqPaymentProperties);
     }
 
     @Test

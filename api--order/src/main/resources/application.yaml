@@ -33,18 +33,13 @@ spring:
     port: 5672
     host: localhost
 rabbitmq:
-  exchange:
-    name: shoesclick_exchange
+  exchange: shoesclick_exchange
   notification:
-    queue:
-      name: mq_notification
-    routing:
-      key: notification_routingkey
+    queue: mq_notification
+    routingKey: notification_routingkey
   payment:
-    queue:
-      name: mq_payment
-    routing:
-      key: payment_routingkey
+    queue: mq_payment
+    routingKey: payment_routingkey
 
 feign:
   client:

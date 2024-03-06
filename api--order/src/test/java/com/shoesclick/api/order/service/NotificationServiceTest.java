@@ -1,5 +1,7 @@
 package com.shoesclick.api.order.service;
 
+import com.shoesclick.api.order.config.properties.MQNotificationProperties;
+import com.shoesclick.api.order.config.properties.MqProperties;
 import com.shoesclick.api.order.entity.Order;
 import org.apache.commons.lang3.reflect.FieldUtils;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,11 +17,13 @@ import org.springframework.test.util.ReflectionTestUtils;
 import java.time.LocalDateTime;
 
 import static org.mockito.ArgumentMatchers.*;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(SpringExtension.class)
 class NotificationServiceTest {
+
+    @Mock
+    private MqProperties mqProperties;
 
     @Mock
     private AmqpTemplate rabbitTemplate;
@@ -29,8 +33,11 @@ class NotificationServiceTest {
 
     @BeforeEach
     public void setUp() {
-        ReflectionTestUtils.setField(notificationService, "exchange", "valor");
-        ReflectionTestUtils.setField(notificationService, "routingKey", "valor");
+        var mqNotificationProperties = new MQNotificationProperties();
+        mqNotificationProperties.setQueue("FILA");
+        mqNotificationProperties.setRoutingKey("ROUTING");
+        when(mqProperties.getExchange()).thenReturn("EXCHANGE");
+        when(mqProperties.getNotification()).thenReturn(mqNotificationProperties);
     }
 
     @Test
