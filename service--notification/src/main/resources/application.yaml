@@ -46,12 +46,10 @@ spring:
 
 
 rabbitmq:
-  queue:
-    name: mq_notification
-  exchange:
-    name: shoesclick_exchange
-  routing:
-    key: notification_routingkey
+  exchange: shoesclick_exchange
+  notification:
+    queue: mq_notification
+    routingKey: notification_routingkey
 
 feign:
   client:

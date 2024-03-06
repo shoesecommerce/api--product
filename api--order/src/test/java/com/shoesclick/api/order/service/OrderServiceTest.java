@@ -81,7 +81,7 @@ class OrderServiceTest extends AbstractServiceTest {
         assertNotNull(status);
         verify(orderRepository, times(1)).save(any(Order.class));
         verify(paymentService, times(1)).sendPayment(any(Order.class), any(PaymentDomain.class));
-        verify(notificationService, times(1)).sendNotification(any(Order.class));
+        verify(notificationService, times(1)).sendNotification(any(Notification.class));
 
     }
 

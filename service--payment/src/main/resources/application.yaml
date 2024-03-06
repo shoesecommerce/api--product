@@ -32,26 +32,15 @@ spring:
     password: "passw123"
     port: 5672
     host: localhost
-  mail:
-    properties:
-      mail:
-        smtp:
-          starttls:
-            enable: 'true'
-          auth: 'true'
-    username: ${EMAIL_USERNAME:clayton.oliveira@al.infnet.edu.br}
-    host: ${SMTP_HOST:smtp.gmail.com}
-    password: {EMAIL_PASSWORD:clm@457163}
-    port: '587'
-
 
 rabbitmq:
-  queue:
-    name: mq_payment
-  exchange:
-    name: shoesclick_exchange
-  routing:
-    key: payment_routingkey
+  exchange: shoesclick_exchange
+  notification:
+    queue: mq_notification
+    routingKey: notification_routingkey
+  payment:
+    queue: mq_payment
+    routingKey: payment_routingkey
 
 feign:
   client:

@@ -1,13 +1,13 @@
-package com.shoesclick.api.order.service;
+package com.shoesclick.service.payment.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.shoesclick.api.order.config.properties.MqProperties;
-import com.shoesclick.api.order.entity.Notification;
-import com.shoesclick.api.order.entity.Order;
-import com.shoesclick.api.order.enums.TypeTemplate;
-import com.shoesclick.api.order.exception.BusinessException;
+import com.shoesclick.service.payment.config.properties.MqProperties;
+import com.shoesclick.service.payment.entity.Notification;
+import com.shoesclick.service.payment.entity.Order;
+import com.shoesclick.service.payment.enums.TypeTemplate;
+import com.shoesclick.service.payment.exception.BusinessException;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -35,4 +35,5 @@ public class NotificationService {
             throw new BusinessException("ERRO NO PROCESSAMENTO DA FILA MQ");
         }
     }
+
 }

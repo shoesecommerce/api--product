@@ -3,8 +3,10 @@ package com.shoesclick.api.order.service;
 import com.shoesclick.api.order.aspect.ObjectReturnType;
 import com.shoesclick.api.order.aspect.ReturnNullObject;
 import com.shoesclick.api.order.domain.PaymentDomain;
+import com.shoesclick.api.order.entity.Notification;
 import com.shoesclick.api.order.entity.Order;
 import com.shoesclick.api.order.entity.Status;
+import com.shoesclick.api.order.enums.TypeTemplate;
 import com.shoesclick.api.order.repository.CustomerRepository;
 import com.shoesclick.api.order.repository.OrderRepository;
 import com.shoesclick.api.order.repository.ProductRepository;
@@ -47,7 +49,7 @@ public class OrderService {
         orderRepository.save(order);
         paymentService.sendPayment(order, paymentDomain);
 
-        notificationService.sendNotification(order);
+        notificationService.sendNotification(getNotification(order));
         return new Status(0, "SUCESSO");
     }
 
@@ -70,5 +72,12 @@ public class OrderService {
                     orderRepository.save(item);
                 });
         return new Status(0, "SUCESSO");
+    }
+
+    private Notification getNotification(Order order) {
+        return new Notification()
+                .setIdOrder(order.getId())
+                .setIdCustomer(order.getIdCustomer())
+                .setTypeTemplate(TypeTemplate.CREATE_ORDER);
     }
 }
