@@ -17,7 +17,7 @@ public class Log {
     private String className;
 
     @Size(min = 5, max = 200)
-    private String error;
+    private String methodName;
 
     @Column(length = 700)
     private String details;
@@ -49,12 +49,12 @@ public class Log {
         return this;
     }
 
-    public String getError() {
-        return error;
+    public String getMethodName() {
+        return methodName;
     }
 
-    public Log setError(String error) {
-        this.error = error;
+    public Log setMethodName(String methodName) {
+        this.methodName = methodName;
         return this;
     }
 
