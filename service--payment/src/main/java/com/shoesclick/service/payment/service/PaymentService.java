@@ -2,8 +2,11 @@ package com.shoesclick.service.payment.service;
 
 import com.shoesclick.service.payment.domain.PaymentDomain;
 import com.shoesclick.service.payment.entity.Log;
+import com.shoesclick.service.payment.entity.Notification;
+import com.shoesclick.service.payment.entity.Order;
 import com.shoesclick.service.payment.entity.OrderStatus;
 import com.shoesclick.service.payment.enums.TypeLog;
+import com.shoesclick.service.payment.enums.TypeTemplate;
 import com.shoesclick.service.payment.repository.*;
 import com.shoesclick.service.payment.strategy.PaymentStrategy;
 import jakarta.transaction.Transactional;
@@ -21,13 +24,16 @@ public class PaymentService {
 
     private final LogRepository logRepository;
 
+    private final NotificationService notificationService;
+
     private final OrderRepository orderRepository;
 
-    public PaymentService(CardPaymentRepository cardPaymentRepository, PixPaymentRepository pixPaymentRepository, TicketPaymentRepository ticketPaymentRepository, LogRepository logRepository, OrderRepository orderRepository) {
+    public PaymentService(CardPaymentRepository cardPaymentRepository, PixPaymentRepository pixPaymentRepository, TicketPaymentRepository ticketPaymentRepository, LogRepository logRepository, NotificationService notificationService, OrderRepository orderRepository) {
         this.cardPaymentRepository = cardPaymentRepository;
         this.pixPaymentRepository = pixPaymentRepository;
         this.ticketPaymentRepository = ticketPaymentRepository;
         this.logRepository = logRepository;
+        this.notificationService = notificationService;
         this.orderRepository = orderRepository;
     }
 
@@ -38,6 +44,7 @@ public class PaymentService {
         try {
             savePayment(paymentDomain);
             orderRepository.updateStatus(paymentDomain.getOrder().getId(),new OrderStatus().setStatus(PAYMENT_PROCESS));
+            notificationService.sendNotification(getNotification(paymentDomain.getOrder()));
             log = setLog("PROCESSADO COM SUCESSO A NOTIFICAÇÃO " + paymentDomain.getOrder().getId(), "EXCECUTADO COM SUCESSO", TypeLog.SUCCESS);
 
         } catch (Exception e) {
@@ -47,7 +54,7 @@ public class PaymentService {
         }
     }
 
-    private void savePayment(PaymentDomain paymentDomain) {
+     private void savePayment(PaymentDomain paymentDomain) {
         var paymentStrategy = PaymentStrategy.findByName(paymentDomain.getPaymentType());
         switch (paymentStrategy) {
             case PIX_PAYMENT ->
@@ -64,5 +71,12 @@ public class PaymentService {
                 .setError(message)
                 .setDetails(details)
                 .setTypeLog(success);
+    }
+
+    private Notification getNotification(Order order) {
+            return new Notification()
+                    .setIdOrder(order.getId())
+                    .setTypeTemplate(TypeTemplate.PAYMENT_APPROVED)
+                    .setIdCustomer(order.getIdCustomer());
     }
 }
