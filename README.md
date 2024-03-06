@@ -29,6 +29,11 @@ Docker: Para Rodar o arquivo docker-compose (Contido no projeto principal) que c
 Postman para Testes : (https://www.postman.com/downloads/)
 ```
 
+## Diagrama C4 com o fluxo proposto
+```
+SHOES-CLICK- DIAGRAMA C4.drawio
+```
+
 ## Rodando local
 
 Inicie com a classe Application.java
