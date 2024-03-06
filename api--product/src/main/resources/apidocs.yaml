@@ -9,8 +9,7 @@ paths:
       tags:
         - Product
       parameters:
-        -
-          name: id
+        - name: id
           description: Id do elemento
           schema:
             type: number
@@ -30,8 +29,7 @@ paths:
       tags:
         - Product
       parameters:
-        -
-          name: id
+        - name: id
           description: id do elmento
           schema:
             type: number
@@ -48,8 +46,7 @@ paths:
       summary: Remove as informações
       description: Remove as informações
     parameters:
-      -
-        name: id
+      - name: id
         description: Identificador do elemento
         schema:
           type: number
@@ -98,7 +95,7 @@ paths:
       tags:
         - Product
       responses:
-        '200':
+        '201':
           content:
             application/json:
               schema:
@@ -240,8 +237,7 @@ components:
           type: boolean
       example:
         content:
-          -
-            id: 3
+          - id: 3
             name: JOSE MAIA
             email: jose@email.com
             username: jose.maia

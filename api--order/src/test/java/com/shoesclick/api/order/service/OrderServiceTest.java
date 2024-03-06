@@ -77,11 +77,21 @@ class OrderServiceTest extends AbstractServiceTest {
         var orderDomain = new PaymentDomain();
         order.setIdCustomer(1L);
         order.setOrderItems(Set.of(new OrderItem().setIdProduct(1L)));
-        orderService.save(order, orderDomain);
+        var status = orderService.save(order, orderDomain);
+        assertNotNull(status);
         verify(orderRepository, times(1)).save(any(Order.class));
         verify(paymentService, times(1)).sendPayment(any(Order.class), any(PaymentDomain.class));
         verify(notificationService, times(1)).sendNotification(any(Order.class));
 
+    }
+
+    @Test
+    void shouldUpdateStatusOrderSuccess(){
+        var order = new Order().setId(1L).setStatus(2);
+        when(orderRepository.findById(anyLong())).thenReturn(Optional.of(new Order().setId(1L).setStatus(2)));
+        var status = orderService.updateStatus(order);
+        assertNotNull(status);
+        verify(orderRepository, times(1)).save(any(Order.class));
     }
 
     @Test

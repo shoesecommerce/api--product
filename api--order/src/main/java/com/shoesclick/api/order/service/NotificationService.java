@@ -8,14 +8,15 @@ import com.shoesclick.api.order.entity.Order;
 import com.shoesclick.api.order.enums.TypeTemplate;
 import com.shoesclick.api.order.exception.BusinessException;
 import org.springframework.amqp.core.AmqpTemplate;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 @Service
+@Component
 public class NotificationService {
 
-    @Value("${rabbitmq.notification.exchange.name}")
+    @Value("${rabbitmq.exchange.name}")
     private static String exchange;
 
     @Value("${rabbitmq.notification.routing.key}")

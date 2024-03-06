@@ -41,7 +41,7 @@ spring:
           auth: 'true'
     username: ${EMAIL_USERNAME:clayton.oliveira@al.infnet.edu.br}
     host: ${SMTP_HOST:smtp.gmail.com}
-    password: {EMAIL_PASSWORD:clm@457163}
+    password: {EMAIL_PASSWORD:cccc}
     port: '587'
 
 
@@ -49,7 +49,7 @@ rabbitmq:
   queue:
     name: mq_notification
   exchange:
-    name: notification_exchange
+    name: shoesclick_exchange
   routing:
     key: notification_routingkey
 

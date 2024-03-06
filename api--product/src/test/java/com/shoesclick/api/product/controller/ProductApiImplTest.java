@@ -49,14 +49,14 @@ class ProductApiImplTest {
     private ProductApiImpl controller;
 
     @BeforeEach
-    public void setup() {
+     void setup() {
         this.mockMvc = MockMvcBuilders.standaloneSetup(controller)
                 .setControllerAdvice(new ControllerErrorHandler())
                 .build();
     }
 
     @Test
-    public void shouldReturnHttp200_ListProduct() throws Exception {
+     void shouldReturnHttp200_ListProduct() throws Exception {
         when(productService.filter(any(PageRequest.class))).thenReturn(new PageImpl<>(List.of(getProduct())));
         mockMvc
                 .perform(MockMvcRequestBuilders
@@ -68,7 +68,7 @@ class ProductApiImplTest {
     }
 
     @Test
-    public void shouldReturnHttp204_ListProduct() throws Exception {
+     void shouldReturnHttp204_ListProduct() throws Exception {
         when(productService.filter(any(PageRequest.class))).thenThrow(new ListNotFoundException("Erro"));
         mockMvc
                 .perform(MockMvcRequestBuilders
@@ -80,7 +80,7 @@ class ProductApiImplTest {
     }
 
     @Test
-    public void shouldReturnHttp200_FilterProductPost() throws Exception {
+     void shouldReturnHttp200_FilterProductPost() throws Exception {
         when(productService.filter(any(Category.class), any(PageRequest.class))).thenReturn(new PageImpl<>(List.of(getProduct())));
         mockMvc
                 .perform(MockMvcRequestBuilders
@@ -95,7 +95,7 @@ class ProductApiImplTest {
 
 
     @Test
-    public void shouldReturnHttp204_FilterProductPost() throws Exception {
+     void shouldReturnHttp204_FilterProductPost() throws Exception {
          when(productService.filter(any(Category.class), any(PageRequest.class))).thenThrow(new ListNotFoundException("Erro"));
         mockMvc
                 .perform(MockMvcRequestBuilders
@@ -108,7 +108,7 @@ class ProductApiImplTest {
     }
 
     @Test
-    public void shouldReturnHttp200_GetProduct() throws Exception {
+     void shouldReturnHttp200_GetProduct() throws Exception {
         when(productService.findById(anyLong())).thenReturn(new Product());
         mockMvc
                 .perform(MockMvcRequestBuilders
@@ -120,7 +120,7 @@ class ProductApiImplTest {
     }
 
     @Test
-    public void shouldReturnHttp404_GetProduct() throws Exception {
+     void shouldReturnHttp404_GetProduct() throws Exception {
         when(productService.findById(anyLong())).thenThrow(new ElementNotFoundException("ERRO"));
         mockMvc
                 .perform(MockMvcRequestBuilders
@@ -132,7 +132,7 @@ class ProductApiImplTest {
     }
 
     @Test
-    public void shouldReturnHttp200_DeleteProduct() throws Exception {
+     void shouldReturnHttp200_DeleteProduct() throws Exception {
         when(productService.delete(anyLong())).thenReturn(new Status(0, ""));
         mockMvc
                 .perform(MockMvcRequestBuilders
@@ -144,7 +144,7 @@ class ProductApiImplTest {
     }
 
     @Test
-    public void shouldReturnHttp200_SaveProduct() throws Exception {
+     void shouldReturnHttp201_SaveProduct() throws Exception {
         when(productService.save(any(Product.class))).thenReturn(new Status(0, ""));
         when(productMapper.map(any(ProductRequest.class))).thenReturn(new Product());
         mockMvc

@@ -48,14 +48,14 @@ class CustomerApiImplTest {
     private CustomerApiImpl controller;
 
     @BeforeEach
-    public void setup() {
+     void setup() {
         this.mockMvc = MockMvcBuilders.standaloneSetup(controller)
                 .setControllerAdvice(new ControllerErrorHandler())
                 .build();
     }
 
     @Test
-    public void shouldReturnHttp200_ListCustomer() throws Exception {
+     void shouldReturnHttp200_ListCustomer() throws Exception {
         when(customerService.filter(any(PageRequest.class))).thenReturn(new PageImpl<>(List.of(getCustomer())));
         mockMvc
                 .perform(MockMvcRequestBuilders
@@ -67,7 +67,7 @@ class CustomerApiImplTest {
     }
 
     @Test
-    public void shouldReturnHttp204_ListCustomer() throws Exception {
+     void shouldReturnHttp204_ListCustomer() throws Exception {
         when(customerService.filter(any(PageRequest.class))).thenThrow(new ListNotFoundException("Erro"));
         mockMvc
                 .perform(MockMvcRequestBuilders
@@ -79,7 +79,7 @@ class CustomerApiImplTest {
     }
 
     @Test
-    public void shouldReturnHttp200_FilterCustomer() throws Exception {
+     void shouldReturnHttp200_FilterCustomer() throws Exception {
         when(customerService.filter(any(PageRequest.class))).thenReturn(new PageImpl<>(List.of(getCustomer())));
         mockMvc
                 .perform(MockMvcRequestBuilders
@@ -94,7 +94,7 @@ class CustomerApiImplTest {
 
 
     @Test
-    public void shouldReturnHttp204_FilterCustomer() throws Exception {
+     void shouldReturnHttp204_FilterCustomer() throws Exception {
          when(customerService.filter(any(PageRequest.class))).thenThrow(new ListNotFoundException("Erro"));
         mockMvc
                 .perform(MockMvcRequestBuilders
@@ -107,7 +107,7 @@ class CustomerApiImplTest {
     }
 
     @Test
-    public void shouldReturnHttp200_GetCustomer() throws Exception {
+     void shouldReturnHttp200_GetCustomer() throws Exception {
         when(customerService.findById(anyLong())).thenReturn(new Customer());
         mockMvc
                 .perform(MockMvcRequestBuilders
@@ -119,7 +119,7 @@ class CustomerApiImplTest {
     }
 
     @Test
-    public void shouldReturnHttp404_GetCustomer() throws Exception {
+     void shouldReturnHttp404_GetCustomer() throws Exception {
         when(customerService.findById(anyLong())).thenThrow(new ElementNotFoundException("ERRO"));
         mockMvc
                 .perform(MockMvcRequestBuilders
@@ -131,7 +131,7 @@ class CustomerApiImplTest {
     }
 
     @Test
-    public void shouldReturnHttp200_DeleteCustomer() throws Exception {
+     void shouldReturnHttp200_DeleteCustomer() throws Exception {
         when(customerService.delete(anyLong())).thenReturn(new Status(0, ""));
         mockMvc
                 .perform(MockMvcRequestBuilders
@@ -143,7 +143,7 @@ class CustomerApiImplTest {
     }
 
     @Test
-    public void shouldReturnHttp200_SaveCustomer() throws Exception {
+     void shouldReturnHttp201_SaveCustomer() throws Exception {
         when(customerService.save(any(Customer.class))).thenReturn(new Status(0, ""));
         when(customerMapper.map(any(CustomerRequest.class))).thenReturn(new Customer());
         mockMvc

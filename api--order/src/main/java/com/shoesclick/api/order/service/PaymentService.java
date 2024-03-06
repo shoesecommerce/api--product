@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class PaymentService {
 
-    @Value("${rabbitmq.notification.exchange.name}")
+    @Value("${rabbitmq.exchange.name}")
     private static String exchange;
 
     @Value("${rabbitmq.payment.routing.key}")

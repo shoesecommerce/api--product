@@ -18,12 +18,16 @@ public class TemplateEmailLoader extends AbstractImportFileLoader {
     @Override
     protected void createItem(String linha) {
         String[] campos = linha.split(";");
-        var tamplate = new TemplateEmail()
-                .setTypeTemplate(TypeTemplate.valueOf(campos[0]))
-                .setSubject(campos[1])
-                .setBody(campos[2]);
 
-        templateEmailService.save(tamplate);
+        var actual = templateEmailService.findByTypeTemplate(TypeTemplate.valueOf(campos[0]));
+
+        if (actual == null) {
+            var tamplate = new TemplateEmail()
+                    .setTypeTemplate(TypeTemplate.valueOf(campos[0]))
+                    .setSubject(campos[1])
+                    .setBody(campos[2]);
+            templateEmailService.save(tamplate);
+        }
     }
 
     @Override

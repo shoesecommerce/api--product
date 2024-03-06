@@ -9,6 +9,7 @@ import com.shoesclick.api.order.exception.ListNotFoundException;
 import com.shoesclick.api.order.handler.ControllerErrorHandler;
 import com.shoesclick.api.order.mapper.OrderMapper;
 import com.shoesclick.api.order.openapi.model.domain.OrderRequest;
+import com.shoesclick.api.order.openapi.model.domain.OrderStatusRequest;
 import com.shoesclick.api.order.service.OrderService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -49,7 +50,7 @@ class OrderApiImplTest {
     }
 
     @Test
-    public void shouldReturnHttp200_SaveOrder() throws Exception {
+    void shouldReturnHttp201_SaveOrder() throws Exception {
         when(orderService.save(any(Order.class), any(PaymentDomain.class))).thenReturn(new Status(0, ""));
         when(orderMapper.map(any(OrderRequest.class))).thenReturn(new Order());
         when(orderMapper.mapPayment(anyString(), anyMap())).thenReturn(getPaymentDomain());
@@ -64,7 +65,7 @@ class OrderApiImplTest {
     }
 
     @Test
-    public void shouldReturnHttp200_GetOrder() throws Exception {
+    void shouldReturnHttp200_GetOrder() throws Exception {
         when(orderService.findById(anyLong())).thenReturn(new Order());
         mockMvc
                 .perform(MockMvcRequestBuilders
@@ -76,7 +77,7 @@ class OrderApiImplTest {
     }
 
     @Test
-    public void shouldReturnHttp404_GetOrder() throws Exception {
+    void shouldReturnHttp404_GetOrder() throws Exception {
         when(orderService.findById(anyLong())).thenThrow(new ElementNotFoundException("ERRO"));
         mockMvc
                 .perform(MockMvcRequestBuilders
@@ -89,11 +90,11 @@ class OrderApiImplTest {
 
 
     @Test
-    public void shouldReturnHttp200_ListOrderByCustomer() throws Exception {
+    void shouldReturnHttp200_ListOrderByCustomer() throws Exception {
         when(orderService.listOrderByCustomer(anyLong())).thenReturn(List.of(new Order()));
         mockMvc
                 .perform(MockMvcRequestBuilders
-                        .get("/api/order/list/{idCustomer}",1L)
+                        .get("/api/order/list/{idCustomer}", 1L)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers
                         .status()
@@ -101,17 +102,36 @@ class OrderApiImplTest {
     }
 
 
-
     @Test
-    public void shouldReturnHttp204_ListOrderByCustomer() throws Exception {
+    void shouldReturnHttp204_ListOrderByCustomer() throws Exception {
         when(orderService.listOrderByCustomer(anyLong())).thenThrow(new ListNotFoundException("Erro"));
         mockMvc
                 .perform(MockMvcRequestBuilders
-                        .get("/api/order/list/{idCustomer}",1L)
+                        .get("/api/order/list/{idCustomer}", 1L)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers
                         .status()
                         .isNoContent());
+    }
+
+    @Test
+    void shouldReturnHttp200_UpdateStatus() throws Exception {
+        when(orderMapper.map(anyLong(), any(OrderStatusRequest.class))).thenReturn(new Order());
+        when(orderService.updateStatus(any(Order.class))).thenReturn(new Status(0, ""));
+         mockMvc
+                .perform(MockMvcRequestBuilders
+                        .post("/api/order/{id}/status",1L)
+                        .content(new ObjectMapper().writeValueAsString(getOrderStatusRequest()))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers
+                        .status()
+                        .isOk());
+    }
+
+    private OrderStatusRequest getOrderStatusRequest() {
+        var orderStatus = new OrderStatusRequest();
+        orderStatus.setStatus(1);
+        return orderStatus;
     }
 
     private OrderRequest getOrderRequest() {

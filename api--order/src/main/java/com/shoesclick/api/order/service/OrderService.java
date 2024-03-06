@@ -59,4 +59,16 @@ public class OrderService {
     public Order findById(Long id) {
         return orderRepository.findById(id).orElse(null);
     }
+
+
+    @Transactional
+    public Status updateStatus(Order order){
+        orderRepository
+                .findById(order.getId())
+                .ifPresent( item -> {
+                    item.setStatus(order.getStatus());
+                    orderRepository.save(item);
+                });
+        return new Status(0, "SUCESSO");
+    }
 }

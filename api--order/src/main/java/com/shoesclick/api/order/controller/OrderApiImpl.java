@@ -4,6 +4,7 @@ import com.shoesclick.api.order.mapper.OrderMapper;
 import com.shoesclick.api.order.openapi.controller.OrderApi;
 import com.shoesclick.api.order.openapi.model.domain.OrderRequest;
 import com.shoesclick.api.order.openapi.model.domain.OrderResponse;
+import com.shoesclick.api.order.openapi.model.domain.OrderStatusRequest;
 import com.shoesclick.api.order.openapi.model.domain.StatusResponse;
 import com.shoesclick.api.order.service.OrderService;
 import org.springframework.http.ResponseEntity;
@@ -38,7 +39,10 @@ public class OrderApiImpl implements OrderApi {
         return ResponseEntity.status(201).body(orderMapper.map(orderService.save(orderMapper.map(orderRequest),orderMapper.mapPayment(orderRequest.getPaymentType(),orderRequest.getPaymentParams()))));
     }
 
-
+    @Override
+    public ResponseEntity<StatusResponse> updateStatus(Long id, OrderStatusRequest orderStatusRequest) {
+        return ResponseEntity.ok(orderMapper.map(orderService.updateStatus(orderMapper.map(id, orderStatusRequest))));
+    }
 }
 
 

@@ -49,7 +49,7 @@ rabbitmq:
   queue:
     name: mq_payment
   exchange:
-    name: payment_exchange
+    name: shoesclick_exchange
   routing:
     key: payment_routingkey
 
@@ -65,3 +65,4 @@ backend:
   services:
     customerUrl: http://localhost:8081/
     productUrl: http://localhost:8082/
+    orderUrl: http://localhost:8083/
