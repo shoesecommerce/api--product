@@ -33,6 +33,8 @@ Postman para Testes : (https://www.postman.com/downloads/)
 ```
 SHOES-CLICK- DIAGRAMA C4.drawio
 ```
+
+
 ## Arquivo openapi para gerar o mock server dos serviços de pagamento:
    IMPORTANTE: Ao gerar o mock, defina as urls dos serviços no 
    arquivo application.yaml do projeto service--payment
