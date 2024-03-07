@@ -1,5 +1,6 @@
 package com.shoesclick.service.payment.service;
 
+import com.shoesclick.service.payment.domain.PaymentDomain;
 import com.shoesclick.service.payment.entity.*;
 import com.shoesclick.service.payment.repository.CardPaymentRepository;
 import com.shoesclick.service.payment.repository.OrderRepository;
@@ -21,14 +22,10 @@ import static org.mockito.Mockito.verify;
 @ExtendWith(SpringExtension.class)
 class PaymentServiceTest extends AbstractServiceTest {
 
-    @Mock
-    private CardPaymentRepository cardPaymentRepository;
 
     @Mock
-    private PixPaymentRepository pixPaymentRepository;
+    private ProcessPaymentService processPaymentService;
 
-    @Mock
-    private BankSlipPaymentRepository bankSlipPaymentRepository;
     @Mock
     private NotificationService notificationService;
 
@@ -45,25 +42,12 @@ class PaymentServiceTest extends AbstractServiceTest {
 
 
     @Test
-    void shouldProcessPayment_PIX_PAYMENT_Success(){
-        paymentService.process(getPaymentDomain_PIX_PAYMENT());
-        verify(pixPaymentRepository, times(1)).save(any(PixPayment.class));
+    void shouldProcessPaymentSuccess(){
+        paymentService.process(getPaymentDomain());
+        verify(processPaymentService, times(1)).savePayment(any(PaymentDomain.class));
         verify(orderRepository,times(1)).updateStatus(anyLong(), any(OrderStatus.class));
         verify(notificationService, times(1)).sendNotification(any(Notification.class));
     }
 
-    @Test
-    void shouldProcessPayment_CARD_PAYMENT_Success(){
-        paymentService.process(getPaymentDomain_CARD_PAYMENT());
-         verify(cardPaymentRepository, times(1)).save(any(CardPayment.class));
-        verify(orderRepository,times(1)).updateStatus(anyLong(), any(OrderStatus.class));
-        verify(notificationService, times(1)).sendNotification(any(Notification.class));
-    }
-    @Test
-    void shouldProcessPayment_BANKSLIP_PAYMENT_Success(){
-        paymentService.process(getPaymentDomain_BANKSLIP_PAYMENT());
-        verify(bankSlipPaymentRepository, times(1)).save(any(BankSlipPayment.class));
-        verify(orderRepository,times(1)).updateStatus(anyLong(), any(OrderStatus.class));
-        verify(notificationService, times(1)).sendNotification(any(Notification.class));
-    }
+
 }

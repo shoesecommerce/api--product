@@ -11,38 +11,38 @@ import java.time.LocalDateTime;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class CardPayment extends Payment {
 
-    private String number;
+    private String transactionId;
 
-    private String name;
+    private LocalDateTime transactionDate;
 
-    private String code;
+    private String status;
 
     private LocalDateTime expirationDate;
 
-    public String getNumber() {
-        return number;
+    public String getTransactionId() {
+        return transactionId;
     }
 
-    public CardPayment setNumber(String number) {
-        this.number = number;
+    public CardPayment setTransactionId(String transactionId) {
+        this.transactionId = transactionId;
         return this;
     }
 
-    public String getName() {
-        return name;
+    public LocalDateTime getTransactionDate() {
+        return transactionDate;
     }
 
-    public CardPayment setName(String name) {
-        this.name = name;
+    public CardPayment setTransactionDate(LocalDateTime transactionDate) {
+        this.transactionDate = transactionDate;
         return this;
     }
 
-    public String getCode() {
-        return code;
+    public String getStatus() {
+        return status;
     }
 
-    public CardPayment setCode(String code) {
-        this.code = code;
+    public CardPayment setStatus(String status) {
+        this.status = status;
         return this;
     }
 

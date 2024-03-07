@@ -2,6 +2,8 @@ package com.shoesclick.service.payment.entity;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
+
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Payment {
@@ -13,6 +15,8 @@ public class Payment {
     private Long idOrder;
 
     private Long idCustomer;
+
+    private BigDecimal value;
 
     public Long getId() {
         return id;
@@ -38,6 +42,15 @@ public class Payment {
 
     public Payment setIdCustomer(Long idCustomer) {
         this.idCustomer = idCustomer;
+        return this;
+    }
+
+    public BigDecimal getValue() {
+        return value;
+    }
+
+    public Payment setValue(BigDecimal value) {
+        this.value = value;
         return this;
     }
 }

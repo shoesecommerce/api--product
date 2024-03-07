@@ -57,3 +57,7 @@ backend:
     customerUrl: http://localhost:8081/
     productUrl: http://localhost:8082/
     orderUrl: http://localhost:8083/
+  gateway:
+    bankSlipUrl: https://a0bb02cd-0bbc-46d6-915b-36835334ba89.mock.pstmn.io
+    pixUrl: https://a0bb02cd-0bbc-46d6-915b-36835334ba89.mock.pstmn.io
+    cardUrl: https://a0bb02cd-0bbc-46d6-915b-36835334ba89.mock.pstmn.io
