@@ -29,9 +29,20 @@ Docker: Para Rodar o arquivo docker-compose (Contido no projeto principal) que c
 Postman para Testes : (https://www.postman.com/downloads/)
 ```
 
-## Diagrama C4 com o fluxo proposto
+## Diagrama C4 e de caso de uso com o fluxo proposto
 ```
-SHOES-CLICK- DIAGRAMA C4.drawio
+INFNET - MICROSERVICOS - ECOMMERCE.asta
+SHOES-CLICK - COMPONENT - API--CUSTOMER.drawio
+SHOES-CLICK - COMPONENT - API--ORDER.drawio
+SHOES-CLICK - COMPONENT - API--PRODUCT.drawio
+SHOES-CLICK - COMPONENT - BFF.drawio
+SHOES-CLICK - COMPONENT - FRONT WEB.drawio
+SHOES-CLICK - COMPONENT - MOBILE APP.drawio
+SHOES-CLICK - COMPONENT -  SERVICE--NOTIFICATION.drawio
+SHOES-CLICK - COMPONENT -  SERVICE--PAYMENT..drawio
+SHOES-CLICK - CONTAINER.drawio
+SHOES-CLICK- DIAGRAMA - CONTEXT.drawio
+USE CASE.png
 ```
 
 
