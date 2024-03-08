@@ -24,7 +24,7 @@ Maven 3.9.5: (https://dlcdn.apache.org/maven/maven-3/3.9.5/binaries/apache-maven
 
 Eclipse ou Intellij
 
-Docker: Para Rodar o arquivo docker-compose (Contido no projeto principal) que contém a imagem do mysql para facilitar a integração
+Docker: Para Rodar o arquivo docker-compose (Contido no projeto principal) que contém a imagem do mysql e do rabbitmq para facilitar a integração
 
 Postman para Testes : (https://www.postman.com/downloads/)
 ```
