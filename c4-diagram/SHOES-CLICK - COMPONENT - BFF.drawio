@@ -1,0 +1,217 @@
+<mxfile host="app.diagrams.net" modified="2024-03-07T23:13:28.345Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36" etag="jLXsiyBNfnHEvD95G72b" version="24.0.2" type="google">
+  <diagram name="Página-1" id="NBkt7IvmojByfJSfpqG8">
+    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="CX8ekr87qEy7F5eOEZGb-686" value="&lt;font style=&quot;font-size: 12px;&quot;&gt;&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;BFF&amp;nbsp;&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;Java / Spring Boot&lt;br&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="3185" y="1460" width="226" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="CX8ekr87qEy7F5eOEZGb-689" value="&lt;font style=&quot;font-size: 12px;&quot;&gt;&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;CUSTOMER CONTROLLER&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;Permite criar, editar e deletar clientes.&lt;br&gt;Permite também verificar conta e recuperar senhas.&lt;br&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="2923" y="1690" width="226" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="CX8ekr87qEy7F5eOEZGb-759" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="CX8ekr87qEy7F5eOEZGb-686">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="3294.0000000000005" y="1570" as="sourcePoint" />
+            <mxPoint x="3036" y="1690" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="3242" y="1640" />
+              <mxPoint x="3035" y="1640" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="aFJNULfaYlwhrIWOzF2z-1" value="OBJECT JAVA" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" connectable="0" vertex="1" parent="CX8ekr87qEy7F5eOEZGb-759">
+          <mxGeometry x="0.1057" y="2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CX8ekr87qEy7F5eOEZGb-781" value="&lt;font style=&quot;font-size: 12px;&quot;&gt;&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;PRODUCT CONTROLLER&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;Permite listar e selecionar Produtos.&lt;br&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="3185" y="1690" width="226" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="CX8ekr87qEy7F5eOEZGb-782" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;exitX=0.485;exitY=0.998;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitPerimeter=0;" edge="1" parent="1" source="CX8ekr87qEy7F5eOEZGb-686">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="3519" y="1560" as="sourcePoint" />
+            <mxPoint x="3296" y="1688" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="3295" y="1570" />
+              <mxPoint x="3295" y="1670" />
+              <mxPoint x="3295" y="1680" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="aFJNULfaYlwhrIWOzF2z-2" value="OBJECT JAVA" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" connectable="0" vertex="1" parent="CX8ekr87qEy7F5eOEZGb-782">
+          <mxGeometry x="0.2629" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CX8ekr87qEy7F5eOEZGb-784" value="&lt;font style=&quot;font-size: 12px;&quot;&gt;&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;ORDER CONTROLLER&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;Permite criar, cancelar e Listar Pedidos.&lt;br&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="3455" y="1690" width="226" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="CX8ekr87qEy7F5eOEZGb-785" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.756;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="CX8ekr87qEy7F5eOEZGb-686">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="3355" y="1560" as="sourcePoint" />
+            <mxPoint x="3565" y="1690" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="3356" y="1562" />
+              <mxPoint x="3356" y="1640" />
+              <mxPoint x="3565" y="1640" />
+              <mxPoint x="3564" y="1682" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="aFJNULfaYlwhrIWOzF2z-3" value="OBJECT JAVA" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" connectable="0" vertex="1" parent="CX8ekr87qEy7F5eOEZGb-785">
+          <mxGeometry x="0.0971" y="-2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CX8ekr87qEy7F5eOEZGb-811" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="CX8ekr87qEy7F5eOEZGb-787" target="CX8ekr87qEy7F5eOEZGb-792">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="CX8ekr87qEy7F5eOEZGb-787" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;API--CUSTOMER&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;Java / Spring Boot" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="2923" y="2291" width="232" height="89" as="geometry" />
+        </mxCell>
+        <mxCell id="CX8ekr87qEy7F5eOEZGb-790" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;API--PRODUCT&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;Java / Spring Boot" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="3188" y="2291" width="232" height="89" as="geometry" />
+        </mxCell>
+        <mxCell id="CX8ekr87qEy7F5eOEZGb-791" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;API--ORDER&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;Java / Spring Boot" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="3458" y="2291" width="232" height="89" as="geometry" />
+        </mxCell>
+        <mxCell id="CX8ekr87qEy7F5eOEZGb-792" value="&lt;font style=&quot;font-size: 12px;&quot;&gt;&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;CUSTOMER REPOSITORY&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;Permite criar, editar e deletar clientes.&lt;br&gt;Permite também verificar conta e recuperar senhas.&lt;br&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="2924" y="2107" width="226" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="CX8ekr87qEy7F5eOEZGb-834" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="CX8ekr87qEy7F5eOEZGb-793">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3298.877192982456" y="2206.9473684210525" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CX8ekr87qEy7F5eOEZGb-793" value="&lt;font style=&quot;font-size: 12px;&quot;&gt;&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;PRODUCT REPOSITORY&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;Permite listar e selecionar Produtos.&lt;br&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="3186" y="2107" width="226" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="CX8ekr87qEy7F5eOEZGb-794" value="&lt;font style=&quot;font-size: 12px;&quot;&gt;&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;ORDER REPOSITORY&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;Permite criar, cancelar e Listar Pedidos.&lt;br&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="3461" y="2107" width="226" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="CX8ekr87qEy7F5eOEZGb-795" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="CX8ekr87qEy7F5eOEZGb-820" target="CX8ekr87qEy7F5eOEZGb-784">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="3500" y="1800" as="sourcePoint" />
+            <mxPoint x="3550" y="1750" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="aFJNULfaYlwhrIWOzF2z-7" value="OBJECT JAVA" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" connectable="0" vertex="1" parent="CX8ekr87qEy7F5eOEZGb-795">
+          <mxGeometry x="-0.1167" y="-2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CX8ekr87qEy7F5eOEZGb-806" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="CX8ekr87qEy7F5eOEZGb-791" target="CX8ekr87qEy7F5eOEZGb-794">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="3500" y="2168" as="sourcePoint" />
+            <mxPoint x="3550" y="2118" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="aFJNULfaYlwhrIWOzF2z-12" value="HTTP/JSON" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" connectable="0" vertex="1" parent="CX8ekr87qEy7F5eOEZGb-806">
+          <mxGeometry x="-0.1303" y="-3" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CX8ekr87qEy7F5eOEZGb-807" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" target="CX8ekr87qEy7F5eOEZGb-793">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="3300" y="2290" as="sourcePoint" />
+            <mxPoint x="3550" y="2118" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="aFJNULfaYlwhrIWOzF2z-11" value="HTTP/JSON" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" connectable="0" vertex="1" parent="CX8ekr87qEy7F5eOEZGb-807">
+          <mxGeometry x="-0.068" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CX8ekr87qEy7F5eOEZGb-808" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="CX8ekr87qEy7F5eOEZGb-787">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="3500" y="2168" as="sourcePoint" />
+            <mxPoint x="3039" y="2208" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="aFJNULfaYlwhrIWOzF2z-10" value="HTTP/JSON" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" connectable="0" vertex="1" parent="CX8ekr87qEy7F5eOEZGb-808">
+          <mxGeometry x="-0.0945" y="3" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CX8ekr87qEy7F5eOEZGb-810" value="(HTTP/ JSON)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" connectable="0" vertex="1" parent="1">
+          <mxGeometry x="2669.9999999999995" y="2030.003333333333" as="geometry">
+            <mxPoint x="365" y="-8" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CX8ekr87qEy7F5eOEZGb-818" value="&lt;font style=&quot;font-size: 12px;&quot;&gt;&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;CUSTOMER SERVICE&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;Permite criar, editar e deletar clientes.&lt;br&gt;Permite também verificar conta e recuperar senhas.&lt;br&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="2923" y="1930" width="226" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="CX8ekr87qEy7F5eOEZGb-819" value="&lt;font style=&quot;font-size: 12px;&quot;&gt;&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;PRODUCT SERVICE&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;Permite listar e selecionar Produtos.&lt;br&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="3186" y="1930" width="226" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="CX8ekr87qEy7F5eOEZGb-820" value="&lt;font style=&quot;font-size: 12px;&quot;&gt;&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;ORDER SERVICE&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;Permite criar, cancelar e Listar Pedidos.&lt;br&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="3456" y="1930" width="226" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="CX8ekr87qEy7F5eOEZGb-823" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="CX8ekr87qEy7F5eOEZGb-819" target="CX8ekr87qEy7F5eOEZGb-781">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="3820" y="2020" as="sourcePoint" />
+            <mxPoint x="3870" y="1970" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="aFJNULfaYlwhrIWOzF2z-6" value="OBJECT JAVA" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" connectable="0" vertex="1" parent="CX8ekr87qEy7F5eOEZGb-823">
+          <mxGeometry x="-0.0864" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CX8ekr87qEy7F5eOEZGb-825" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="CX8ekr87qEy7F5eOEZGb-818" target="CX8ekr87qEy7F5eOEZGb-689">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="3820" y="2020" as="sourcePoint" />
+            <mxPoint x="3870" y="1970" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="aFJNULfaYlwhrIWOzF2z-4" value="Text" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" connectable="0" vertex="1" parent="CX8ekr87qEy7F5eOEZGb-825">
+          <mxGeometry x="-0.0714" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="aFJNULfaYlwhrIWOzF2z-5" value="OBJECT JAVA" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" connectable="0" vertex="1" parent="CX8ekr87qEy7F5eOEZGb-825">
+          <mxGeometry x="-0.0414" y="-2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CX8ekr87qEy7F5eOEZGb-826" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="CX8ekr87qEy7F5eOEZGb-793" target="CX8ekr87qEy7F5eOEZGb-819">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="3330" y="2220" as="sourcePoint" />
+            <mxPoint x="3380" y="2170" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="3300" y="2100" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CX8ekr87qEy7F5eOEZGb-827" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;entryX=0.526;entryY=1.016;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryPerimeter=0;" edge="1" parent="1" source="CX8ekr87qEy7F5eOEZGb-794" target="CX8ekr87qEy7F5eOEZGb-820">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="3360" y="2140" as="sourcePoint" />
+            <mxPoint x="3410" y="2090" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="aFJNULfaYlwhrIWOzF2z-9" value="OBJECT JAVA" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" connectable="0" vertex="1" parent="CX8ekr87qEy7F5eOEZGb-827">
+          <mxGeometry x="-0.1375" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CX8ekr87qEy7F5eOEZGb-828" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="CX8ekr87qEy7F5eOEZGb-792" target="CX8ekr87qEy7F5eOEZGb-818">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="3360" y="2140" as="sourcePoint" />
+            <mxPoint x="3410" y="2090" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="aFJNULfaYlwhrIWOzF2z-8" value="OBJECT JAVA" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" connectable="0" vertex="1" parent="CX8ekr87qEy7F5eOEZGb-828">
+          <mxGeometry x="-0.0732" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CX8ekr87qEy7F5eOEZGb-830" value="OBJECT JAVA" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" connectable="0" vertex="1" parent="1">
+          <mxGeometry x="2934.9999999999995" y="2080.003333333333" as="geometry">
+            <mxPoint x="365" y="-8" as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
