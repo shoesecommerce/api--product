@@ -27,7 +27,7 @@ Postman para Testes : (https://www.postman.com/downloads/)
 Para acessar a documentação do Swagger, utilize o link abaixo (Local):
 
 ```
-http://localhost:8081/swagger-ui/index.html
+http://localhost:8082/swagger-ui/index.html
 ```
 
 ## Rodando os Testes

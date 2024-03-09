@@ -1,4 +1,4 @@
-# API - ORDER - TRABALHO INFNET
+# BFF SITE SHOES - TRABALHO INFNET
 
 Projeto conceito para utilização de Serviço Rest com Spring Boot
 
@@ -27,7 +27,7 @@ Postman para Testes : (https://www.postman.com/downloads/)
 Para acessar a documentação do Swagger, utilize o link abaixo (Local):
 
 ```
-http://localhost:8083/swagger-ui/index.html
+http://localhost:8080/swagger-ui/index.html
 ```
 
 ## Rodando os Testes
@@ -52,7 +52,7 @@ Basta executar o comando maven install
 Para rodar, vá na pasta target onde tem o artefato gerado e execute o comando:
 
 ```
-java -jar api--order-0.0.1-SNAPSHOT.jar
+java -jar bff--site-shoes-0.0.1-SNAPSHOT.jar
 ```
 
 
