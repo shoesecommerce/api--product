@@ -59,6 +59,7 @@ apidocs-mock.yaml
 ## Rodando local
 
 **Inicie o Docker**
+
 **Na pasta raiz do projeto, Rode o docker compose Com o comando abaixo:**
 
 ```
