@@ -3,6 +3,8 @@ server:
     context-path: /
   port: 8080
 spring:
+  application:
+    name: bff--site-shoes
   mvc:
     throw-exception-if-no-handler-found: true
   resources:

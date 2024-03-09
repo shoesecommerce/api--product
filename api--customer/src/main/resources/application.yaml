@@ -3,6 +3,8 @@ server:
     context-path: /
   port: 8081
 spring:
+  application:
+    name: api--customer
   mvc:
     throw-exception-if-no-handler-found: true
   resources:
