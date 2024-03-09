@@ -3,7 +3,7 @@
 Projetos conceito para utilização de Serviço Rest com Spring Boot
 
 ##Projetos:
-* * **bff-site-shoes**
+* **bff-site-shoes**
 * **api--customer**
 * **api--prodcut**
 * **api--product**
@@ -67,6 +67,17 @@ Importe o arquivo abaixo e execute os testes:
 ```
  Shoes.click.postman_collection.json
 ```
+Observação: Basicamente alguns serviços carregam informações no banco como produtos, template de email.
+Para Conseguir Rodar a integração basta chamar dois serviços do BFF:
+
+* **POST: /customer/save**
+* **POST: /order/save**
+
+Pare saber se a integração funcionou corretamente basta olhar as tabelas de logs doa bancos:
+
+* **dbnotification**
+* **dbpayment**  
+
 
 ## Autores
 
