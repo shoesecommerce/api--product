@@ -102,7 +102,7 @@ Importe o arquivo abaixo e execute os testes:
 ## Observação: 
 
 Basicamente alguns serviços carregam informações no banco como produtos, template de email.
-Para Conseguir Rodar a integração basta chamar dois serviços do BFF:
+Para Conseguir Rodar a integração basta chamar dois serviços do BFF (Pasta BFF do Postman):
 
 * **POST: /customer/save**
 * **POST: /order/save**
