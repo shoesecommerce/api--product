@@ -4,6 +4,7 @@ import com.shoesclick.api.customer.entity.Status;
 import com.shoesclick.api.customer.exception.BusinessException;
 import com.shoesclick.api.customer.exception.ElementNotFoundException;
 import com.shoesclick.api.customer.exception.ListNotFoundException;
+import com.shoesclick.api.customer.openapi.controller.CustomerApi;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpStatus;
@@ -14,7 +15,8 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 
-@ControllerAdvice
+
+@ControllerAdvice(assignableTypes = {CustomerApi.class})
 public class ControllerErrorHandler extends ResponseEntityExceptionHandler {
 
 	private static final Logger LOGGER = LogManager.getLogger(ControllerErrorHandler.class);

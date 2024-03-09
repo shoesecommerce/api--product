@@ -33,7 +33,7 @@ public class ProductService {
     @Transactional
     @ReturnNullObject(ObjectReturnType.SPRING_PAGE)
     public Page<Product> filter(Category categoy, Pageable page) {
-        return productRepository.findAllByCategory(categoy, page);
+        return productRepository.findByCategory(categoy, page);
     }
 
     @Transactional

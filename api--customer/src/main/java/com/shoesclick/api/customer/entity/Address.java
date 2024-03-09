@@ -12,19 +12,14 @@ public class Address {
 
     private String zipCode;
 
-    @Column(unique = true, nullable = false)
     private String number;
 
-    @Column(unique = true, nullable = false)
     private String street;
 
-    @Column(unique = true, nullable = false)
     private String neighborhood;
 
-    @Column(unique = true, nullable = false)
     private String city;
 
-    @Column(unique = true, nullable = false)
     private String state;
 
     public Long getId() {

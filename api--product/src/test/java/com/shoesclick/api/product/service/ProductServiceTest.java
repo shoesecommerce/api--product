@@ -54,7 +54,7 @@ class ProductServiceTest extends AbstractServiceTest {
 
     @Test
     void shouldFilterCategoryProductSuccess() {
-        when(productRepository.findAllByCategory(any(Category.class), any(Pageable.class))).thenReturn(new PageImpl<>(Arrays.asList(new Product())));
+        when(productRepository.findByCategory(any(Category.class), any(Pageable.class))).thenReturn(new PageImpl<>(Arrays.asList(new Product())));
         var pageList = productService.filter(Category.ACESSORIO, PageRequest.of(1, NUMBER_PAGES, Sort.by(SORT_ATTRIBUTE)));
         assertNotNull(pageList);
         assertEquals(1, pageList.getTotalElements());
@@ -76,7 +76,7 @@ class ProductServiceTest extends AbstractServiceTest {
 
     @Test
     void shouldThrow_ListNotFoundException_FilterProductCategoryEmpty() {
-        when(productRepository.findAllByCategory(any(Category.class), any(Pageable.class))).thenReturn(Page.empty());
+        when(productRepository.findByCategory(any(Category.class), any(Pageable.class))).thenReturn(Page.empty());
         assertThrows(ListNotFoundException.class, () -> productService.filter(Category.CALCADO, PageRequest.of(1, NUMBER_PAGES, Sort.by(SORT_ATTRIBUTE))));
     }
 

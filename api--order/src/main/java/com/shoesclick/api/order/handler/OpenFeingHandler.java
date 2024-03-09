@@ -5,8 +5,13 @@ import com.shoesclick.api.order.exception.ListNotFoundException;
 import com.shoesclick.api.order.exception.ResourceException;
 import feign.Response;
 import feign.codec.ErrorDecoder;
+import org.apache.commons.io.IOUtils;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Component;
 
+import java.io.IOException;
+
+@Component
 public class OpenFeingHandler implements ErrorDecoder {
     @Override
     public Exception decode(String s, Response response) {
@@ -27,6 +32,10 @@ public class OpenFeingHandler implements ErrorDecoder {
     }
 
     private static String getMessage(String requestUrl, Response.Body responseBody) {
-        return new StringBuilder("Error in URL: ").append(requestUrl).append(responseBody).toString();
+        try {
+            return new StringBuilder("ERRO AO EXECUTAR O SERVIÇO: ").append(requestUrl).append(" - ").append(IOUtils.toString(responseBody.asInputStream())).toString();
+        } catch (IOException e) {
+            throw new ResourceException("Erro ao recuperar o body:", e);
+        }
     }
 }

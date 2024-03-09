@@ -1,0 +1,761 @@
+openapi: 3.0.2
+info:
+  title: bff--shoesclick-site
+  version: 1.0.0
+  description: Api bff para integrar com o front do site shoesclick
+paths:
+  '/api/order/list/{idCustomer}':
+    summary: Retorna Lista de Pedidos do Cliente
+    description: Retorna Lista de Pedidos do Cliente
+    get:
+      tags:
+        - Order
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OrderResponse'
+          description: SUCESSO
+      operationId: listByCustomer
+    parameters:
+      -
+        name: idCustomer
+        description: Identificador do Cliente
+        schema:
+          type: number
+        in: path
+        required: true
+  '/api/order/{id}':
+    summary: Obtem o Pedido pelo Id
+    description: Obtem o Pedido pelo Id
+    get:
+      tags:
+        - Order
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponse'
+          description: SUCESSO
+      operationId: findById
+      summary: Obtem o Pedido pelo Id
+      description: Obtem o Pedido pelo Id
+    parameters:
+      -
+        name: id
+        description: Identificador do elemento
+        schema:
+          type: number
+        in: path
+        required: true
+  /api/order/save:
+    summary: Salva o Pedido
+    description: Salva O Pedido
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderRequest'
+      tags:
+        - Order
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+          description: SUCESSO
+      operationId: save
+  '/api/customer/{id}':
+    get:
+      tags:
+        - Customer
+      parameters:
+        -
+          name: id
+          description: Id do elemento
+          schema:
+            type: number
+          in: path
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerResponse'
+          description: SUCESSO
+      operationId: getCustomer
+      summary: Obtém as informações
+      description: Obtém as informações
+    delete:
+      tags:
+        - Customer
+      parameters:
+        -
+          name: id
+          description: id do elmento
+          schema:
+            type: number
+          in: path
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+          description: SUCESSO
+      operationId: deleteCustomer
+      summary: Remove as informações
+      description: Remove as informações
+    parameters:
+      -
+        name: id
+        description: Identificador do elemento
+        schema:
+          type: number
+        in: path
+        required: true
+  /api/customer/save:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerRequest'
+      tags:
+        - Customer
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+          description: SUCESSO
+      operationId: saveCustomer
+      summary: Salva as informações
+      description: Salva as informações
+  '/api/product/{id}':
+    get:
+      tags:
+        - Product
+      parameters:
+        -
+          name: id
+          description: Id do elemento
+          schema:
+            type: number
+          in: path
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductResponse'
+          description: SUCESSO
+      operationId: getProduct
+      summary: Obtém as informações
+      description: Obtém as informações
+    delete:
+      tags:
+        - Product
+      parameters:
+        -
+          name: id
+          description: id do elmento
+          schema:
+            type: number
+          in: path
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+          description: SUCESSO
+      operationId: deleteProduct
+      summary: Remove as informações
+      description: Remove as informações
+    parameters:
+      -
+        name: id
+        description: Identificador do elemento
+        schema:
+          type: number
+        in: path
+        required: true
+  /api/product/list:
+    get:
+      tags:
+        - Product
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListProductResponse'
+          description: SUCESSO
+      operationId: listAllProduct
+      summary: Busca todas informações
+      description: Busca todas informações
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FilterRequest'
+        required: true
+      tags:
+        - Product
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListProductResponse'
+          description: SUCESSO
+      operationId: filterProduct
+      summary: Busca todas informações
+      description: Busca todas informações
+  '/api/order/{id}/status':
+    summary: Atualiza o Status do Pedido
+    description: Atualiza o Status do Pedido
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderStatusRequest'
+      tags:
+        - Order
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+          description: SUCESSO
+      operationId: updateStatus
+      summary: Obtem o Pedido pelo Id
+      description: Obtem o Pedido pelo Id
+    parameters:
+      -
+        name: id
+        description: Identificador do elemento
+        schema:
+          type: number
+        in: path
+        required: true
+components:
+  schemas:
+    PageableResponse:
+      title: Root Type for PageableResponse
+      description: ''
+      type: object
+      properties:
+        pageNumber:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        sort:
+          $ref: '#/components/schemas/SortResponse'
+          properties:
+            empty:
+              type: boolean
+            sorted:
+              type: boolean
+            unsorted:
+              type: boolean
+        offset:
+          format: int32
+          type: integer
+        unpaged:
+          type: boolean
+        paged:
+          type: boolean
+      example:
+        pageNumber: 0
+        pageSize: 10
+        sort:
+          empty: false
+          sorted: true
+          unsorted: false
+        offset: 0
+        unpaged: false
+        paged: true
+    SortResponse:
+      title: Root Type for SortResponse
+      description: ''
+      type: object
+      properties:
+        empty:
+          type: boolean
+        sorted:
+          type: boolean
+        unsorted:
+          type: boolean
+      example:
+        empty: false
+        sorted: true
+        unsorted: false
+    CustomerRequest:
+      title: Root Type for CustomerRequest
+      description: ''
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+        email:
+          type: string
+        username:
+          type: string
+        password:
+          type: string
+        address:
+          $ref: '#/components/schemas/AddressRequest'
+          properties:
+            id:
+              format: int32
+              type: integer
+            zipCode:
+              type: string
+            number:
+              type: string
+            street:
+              type: string
+            neighborhood:
+              type: string
+            state:
+              type: string
+            city:
+              type: string
+      example:
+        id: 1
+        name: NOME
+        email: email@email
+        username: USUARIO
+        password: SENHA
+        address:
+          id: 1
+          zipCode: 22222-222
+          number: '222'
+          street: ''
+          neighborhood: bairro
+          state: ST
+          city: cidade
+    CustomerResponse:
+      title: Root Type for CustomerRequest
+      description: ''
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+        email:
+          type: string
+        username:
+          type: string
+        password:
+          type: string
+        address:
+          $ref: '#/components/schemas/AddressResponse'
+          properties:
+            id:
+              format: int32
+              type: integer
+            zipCode:
+              type: string
+            number:
+              type: string
+            street:
+              type: string
+            neighborhood:
+              type: string
+            state:
+              type: string
+            city:
+              type: string
+      example:
+        id: 1
+        name: NOME
+        email: email@email
+        username: USUARIO
+        password: SENHA
+        address:
+          id: 1
+          zipCode: 22222-222
+          number: '222'
+          street: ''
+          neighborhood: bairro
+          state: ST
+          city: cidade
+    AddressRequest:
+      title: Root Type for AddressRequest
+      description: ''
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        zipCode:
+          type: string
+        number:
+          type: string
+        street:
+          type: string
+        neighborhood:
+          type: string
+        state:
+          type: string
+        city:
+          type: string
+      example:
+        id: 1
+        zipCode: 22222-222
+        number: '222'
+        street: ''
+        neighborhood: bairro
+        state: ST
+        city: cidade
+    AddressResponse:
+      title: Root Type for AddressRequest
+      description: ''
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        zipCode:
+          type: string
+        number:
+          type: string
+        street:
+          type: string
+        neighborhood:
+          type: string
+        state:
+          type: string
+        city:
+          type: string
+      example:
+        id: 1
+        zipCode: 22222-222
+        number: '222'
+        street: ''
+        neighborhood: bairro
+        state: ST
+        city: cidade
+    FilterRequest:
+      title: Root Type for FilterRequest
+      description: ''
+      type: object
+      properties:
+        page:
+          format: int32
+          type: integer
+        filter:
+          type: string
+      example:
+        page: 0
+        filter: filtro
+    ProductRequest:
+      title: Root Type for ProductRequest
+      description: ''
+      type: object
+      properties:
+        id:
+          type: number
+        code:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        price:
+          format: double
+          type: number
+        category:
+          description: ''
+          type: string
+      example:
+        id: 1
+        code: '2000'
+        category: CAMISA
+        name: Camisa Polo Azul
+        description: Camisa masculina Polo azul
+        price: 1.2
+    ProductResponse:
+      title: Root Type for ProductRequest
+      description: ''
+      type: object
+      properties:
+        id:
+          type: number
+        code:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        price:
+          format: double
+          type: number
+      example:
+        id: 1
+        code: '2000'
+        name: Camisa Polo Azul
+        description: Camisa masculina Polo azul
+        price: 1.2
+    ListProductResponse:
+      title: Root Type for ListProductResponse
+      description: ''
+      type: object
+      properties:
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductResponse'
+        pageable:
+          $ref: '#/components/schemas/PageableResponse'
+          properties:
+            pageNumber:
+              format: int32
+              type: integer
+            pageSize:
+              format: int32
+              type: integer
+            sort:
+              type: object
+              properties:
+                empty:
+                  type: boolean
+                sorted:
+                  type: boolean
+                unsorted:
+                  type: boolean
+            offset:
+              format: int32
+              type: integer
+            unpaged:
+              type: boolean
+            paged:
+              type: boolean
+        last:
+          type: boolean
+        totalPages:
+          format: int32
+          type: integer
+        totalElements:
+          format: int32
+          type: integer
+        first:
+          type: boolean
+        size:
+          format: int32
+          type: integer
+        number:
+          format: int32
+          type: integer
+        sort:
+          $ref: '#/components/schemas/SortResponse'
+          properties:
+            empty:
+              type: boolean
+            sorted:
+              type: boolean
+            unsorted:
+              type: boolean
+        numberOfElements:
+          format: int32
+          type: integer
+        empty:
+          type: boolean
+      example:
+        content:
+          -
+            id: 3
+            name: JOSE MAIA
+            email: jose@email.com
+            username: jose.maia
+            password: '12345'
+            address:
+              id: 1
+              zipCode: '200021455'
+              number: '1000'
+              street: RUA DA ASSEMBLEIA
+              neighborhood: CENTRO
+              city: RIO DE JANEIRO
+              state: RJ
+        pageable:
+          pageNumber: 0
+          pageSize: 10
+          sort:
+            empty: false
+            sorted: true
+            unsorted: false
+          offset: 0
+          unpaged: false
+          paged: true
+        last: true
+        totalPages: 1
+        totalElements: 4
+        first: true
+        size: 10
+        number: 0
+        sort:
+          empty: false
+          sorted: true
+          unsorted: false
+        numberOfElements: 4
+        empty: false
+    OrderRequest:
+      title: Root Type for OrderRequest
+      description: ''
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        status:
+          format: int32
+          type: integer
+        idCustomer:
+          format: int32
+          type: integer
+        createdAt:
+          format: date-time
+          type: string
+        paymentType:
+          type: string
+        paymentParams:
+          $ref: '#/components/schemas/PaymentParamsRequest'
+          properties:
+            keyCode:
+              type: string
+        orderItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderItemRequest'
+      example:
+        id: 1
+        status: 1
+        idCustomer: 1
+        createdAt: '2020-08-17T10:11:16.908732'
+        paymentType: PIX_PAYMENT
+        paymentParams:
+          keyCode: '1231232132131212312312312312312123'
+        orderItems:
+          -
+            idProduct: 1
+          -
+            idProduct: 3
+    OrderItemRequest:
+      title: Root Type for OrderItemRequest
+      description: ''
+      type: object
+      properties:
+        idProduct:
+          type: number
+        nameProduct:
+          description: ''
+          type: string
+        price:
+          format: double
+          description: ''
+          type: number
+      example:
+        idProduct: 1
+        nameProduct: NOME PRODUTO
+        price: 20
+    PaymentParamsRequest:
+      description: ''
+      type: object
+      additionalProperties:
+        type: object
+    OrderItemResponse:
+      title: Root Type for OrderItemRequest
+      description: ''
+      type: object
+      properties:
+        idProduct:
+          format: int32
+          type: integer
+        nameProduct:
+          description: ''
+          type: string
+        price:
+          format: double
+          description: ''
+          type: number
+      example:
+        idProduct: 1
+        nameProduct: NOME PRODUTO
+        price: 20
+    OrderResponse:
+      title: Root Type for OrderRequest
+      description: ''
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        status:
+          format: int32
+          type: integer
+        idCustomer:
+          format: int32
+          type: integer
+        createdAt:
+          format: date-time
+          type: string
+        orderItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderItemResponse'
+      example:
+        id: 1
+        status: 1
+        idCustomer: 1
+        createdAt: '2020-08-17T10:11:16.908732'
+        paymentType: PIX_PAYMENT
+        paymentParams:
+          keyCode: '1231232132131212312312312312312123'
+        orderItems:
+          -
+            idProduct: 1
+          -
+            idProduct: 3
+    OrderStatusRequest:
+      title: Root Type for OrderStatusRequest
+      description: ''
+      type: object
+      properties:
+        status:
+          format: int32
+          type: integer
+      example:
+        status: 1
+    StatusResponse:
+      title: Root Type for StatusResponse
+      description: ''
+      type: object
+      properties:
+        code:
+          format: int32
+          type: integer
+        description:
+          type: string
+      example:
+        code: 0
+        description: SUCESSO
