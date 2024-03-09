@@ -10,6 +10,7 @@ Projetos conceito para utilização de Serviço Rest com Spring Boot
 * **api--product**
 * **service--notification**
 * **service--payment**
+* **eureka-server**
 
 ## Iniciando o Projeto
 
