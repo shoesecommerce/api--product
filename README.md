@@ -2,7 +2,8 @@
 
 Projetos conceito para utilização de Serviço Rest com Spring Boot
 
-##Projetos:
+## Projetos:
+
 * **bff-site-shoes**
 * **api--customer**
 * **api--prodcut**
@@ -57,7 +58,37 @@ apidocs-mock.yaml
 
 ## Rodando local
 
-Inicie com a classe Application.java
+**Inicie o Docker**
+**Na pasta raiz do projeto, Rode o docker compose Com o comando abaixo:**
+
+```
+docker-compose up
+```
+
+**Com o postman, ou outra ferramenta, crie um Mock Server a partir da apidocs.yaml que está na raiz:**
+
+```
+apidocs-mock.yaml
+```
+
+
+
+**No arquivo service--payments/src/main/reources/application.yaml, altere as urls base dos mocks conforme exemplo abaixo:**
+
+```
+  gateway:
+    bankSlipUrl: https://a0bb02cd-0bbc-46d6-915b-36835334ba89.mock.pstmn.io
+    pixUrl: https://a0bb02cd-0bbc-46d6-915b-36835334ba89.mock.pstmn.io
+    cardUrl: https://a0bb02cd-0bbc-46d6-915b-36835334ba89.mock.pstmn.io
+```
+
+**Entre na pasta de cada projeto e rode o comando do maven:**
+
+```
+mvn clean install
+```
+
+**Em uma IDE, inicie a classe Applicaton.java de cada projeto**
 
 
 ## Rodando com postman
@@ -67,7 +98,10 @@ Importe o arquivo abaixo e execute os testes:
 ```
  Shoes.click.postman_collection.json
 ```
-Observação: Basicamente alguns serviços carregam informações no banco como produtos, template de email.
+
+## Observação: 
+
+Basicamente alguns serviços carregam informações no banco como produtos, template de email.
 Para Conseguir Rodar a integração basta chamar dois serviços do BFF:
 
 * **POST: /customer/save**
