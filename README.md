@@ -107,7 +107,7 @@ Para Conseguir Rodar a integração basta chamar dois serviços do BFF:
 * **POST: /customer/save**
 * **POST: /order/save**
 
-Pare saber se a integração funcionou corretamente basta olhar as tabelas de logs doa bancos:
+Pare saber se a integração funcionou corretamente basta olhar as tabelas de logs dos bancos:
 
 * **dbnotification**
 * **dbpayment**  
