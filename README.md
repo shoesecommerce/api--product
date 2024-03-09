@@ -3,6 +3,7 @@
 Projetos conceito para utilização de Serviço Rest com Spring Boot
 
 ##Projetos:
+* * **bff-site-shoes**
 * **api--customer**
 * **api--prodcut**
 * **api--product**
