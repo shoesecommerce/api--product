@@ -63,3 +63,10 @@ backend:
   services:
     customerUrl: http://localhost:8081/
     productUrl: http://localhost:8082/
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8762/eureka/
+  instance:
+    prefer-ip-address: 'true'
